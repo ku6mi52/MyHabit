@@ -1,0 +1,37 @@
+<% unless @daily_record.persisted? %>
+	<section class="card">
+		<h2>今日の記録</h2>
+			<%= form_with model: @daily_record, local: true do |f| %>
+				<div>
+					<%= f.label :weight, "体重" %><br>
+					<%= f.number_field :weight, step: "0.1" %>
+				</div>
+			
+				<div>
+					<%= f.label :body_fat_percentage, "体脂肪率" %><br>
+					<%= f.number_field :body_fat_percentage, step: "0.1" %>
+				</div>
+			
+				<%= f.submit @daily_record.persisted? ? "更新" : "保存" %>
+			<% end %>
+	</section>
+<% end %>
+
+<section class="card">
+	<h2>今日のタスク</h2>
+		<% if @habits.any? %>
+			<ul class="tasks">
+				<% @habits.each do |habit| %>
+					<% done = @done_habit_ids.include?(habit.id) %>
+					<li class="task-item">
+						<%= button_to toggle_habit_check_path(habit_id: habit.id), method: :post, class: "check-btn" do %>
+							<%= check_box_tag "done_habit_ids[]", habit.id, done, disabled: true %>
+						<% end %>
+					<span class="task-label <%= 'done' if done %>"><%= habit.name %></span>
+					</li>
+				<% end %>
+			</ul>
+		<% else %>
+			<p>まだタスクがありません。<%= link_to "追加する", habits_path %></p>
+		<% end %>
+</section>

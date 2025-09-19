@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: "Dockerfile.dev"
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    command: /bin/sh -c "bundle install && yarn install && rm -f tmp/pids/server.pid && bin/dev"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:delegated
+      - node-modules:/app/node_modules:delegated
+      - bundle-data:/usr/local/bundle:delegated
+
+  postgres:
+    env_file:
+      - .env
+    image: postgres:16.2
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - pgsql-data:/var/lib/postgresql/data:cached
+
+volumes:
+  pgsql-data:
+  bundle-data:
+  node-modules:

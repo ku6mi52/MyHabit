@@ -1,0 +1,15 @@
+<h1>習慣一覧</h1>
+
+<p><%= link_to "タスク追加", new_habit_path %></p>
+
+<table>
+	<tbody>
+		<% @habits.each do |habit| %>
+			<tr>
+				<td><%= habit.name %></td>
+				<td><%= link_to "編集", edit_habit_path(habit) %></td>
+				<td><%= button_to "削除", habit_path(habit), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

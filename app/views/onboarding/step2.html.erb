@@ -1,0 +1,23 @@
+<h1>目標登録</h1>
+
+<%= form_with model: current_user, url: step2_onboarding_path, method: :patch, local: true do |f| %>
+  <% if current_user.errors.any? %>
+    <ul style="color:#c00">
+      <% current_user.errors.full_messages.each do |m| %><li><%= m %></li><% end %>
+    </ul>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :goal_weight, "目標の体重 (kg)" %><br>
+    <%= f.number_field :goal_weight, step: "0.1", min: 0, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal_body_fat_percentage, "目標の体脂肪率 (%)" %><br>
+    <%= f.number_field :goal_body_fat_percentage, step: "0.1", min: 0 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "完了" %>
+  </div>
+<% end %>

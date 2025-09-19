@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>myapp</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all" %>
+		<%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+	</head>
+
+	<body>
+		<header>
+		</header>
+
+		<% if notice %><div class="flash notice"><%= notice %></div><% end %>
+		<% if alert %><div class ="flash alert"><%= alert %></div><% end %>
+
+			<%= yield %>
+
+		<footer class="footer-nav">
+			<ul>
+        <li><%= link_to new_daily_record_path do %>
+          <span>記録する</span>
+        <% end %></li>
+
+        <li><%= link_to habits_path do %>
+          <span>タスク一覧</span>
+        <% end %></li>
+
+        <li><%= link_to daily_records_path do %>
+          <span>記録一覧</spna>
+        <% end %></li>
+
+        <li><%= link_to profile_path do %>
+          <span>プロフィール</span>
+        <% end %></li>
+			</ul>
+		</footer>
+	</body>
+</html>

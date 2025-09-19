@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  daily_record: one
+  habit: one
+
+two:
+  daily_record: two
+  habit: two

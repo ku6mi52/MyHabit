@@ -1,0 +1,9 @@
+<h1>記録の編集</h1>
+<%= render "form", daily_record: @daily_record, submit_text: "更新" %>
+<p>
+  <%= button_to "削除", daily_record_path(@daily_record),
+                method: :delete,
+                form: { data: { turbo_confirm: "削除しますか？" } } %>
+  <%= link_to "一覧へ戻る", daily_records_path %>
+</p>
+

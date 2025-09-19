@@ -1,0 +1,15 @@
+<%= content_for :title, "プロフィール" %>
+
+<h2>登録情報の編集</h2>
+<ul class="list">
+	<li>
+		<%= link_to edit_user_registration_path do %>
+			メールアドレス ／ パスワードの変更
+		<% end %>
+	</li>
+	<li>
+		<%= link_to edit_goals_profile_path do %>
+			目標体重・目標体脂肪率
+		<% end %>
+	</li>
+</ul>

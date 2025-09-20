@@ -1,6 +1,7 @@
 class DailyRecord < ApplicationRecord
   belongs_to :user
-	has_many :habit_checks
+	has_many :habit_checks, dependent: :destroy
+	has_many :habits, through: :habit_checks
 	
   validates :recorded_on, presence: true, uniqueness: { scope: :user_id }
 	validates :weight, allow_nil: true, numericality: { greater_than: 0, less_than: 200 }

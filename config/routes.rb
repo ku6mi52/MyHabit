@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     root "devise/sessions#new", as: :unauthenticated_root
   end
 
-  resource :onboarding, only: [] do
+  resource :onboarding, controller: :onboarding, only: [] do
     get   :step1
     patch :step1, action: :update_step1
     get   :step2
@@ -16,13 +16,13 @@ Rails.application.routes.draw do
   end
 
   resources :daily_records, except: [:show]
-
+  
   resources :habits, except: [:show]
-
+  
   resource :profile, only: [:show], controller: "profiles" do
-    get :edit_goals
-    patch :update_goals
-  end
-
-  post "habit_checks/toggle", to: "habit_checks#toggle", as: :toggle_habit_check
+	  get  :edit_goals
+	  patch :update_goals
+	end
+	
+	post "habit_checks", to: "habit_checks#create", as: :habit_checks
 end

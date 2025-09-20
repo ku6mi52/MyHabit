@@ -1,7 +1,8 @@
-<% unless @daily_record.persisted? %>
+<% if @show_quick_form %>
 	<section class="card">
 		<h2>今日の記録</h2>
-			<%= form_with model: @daily_record, local: true do |f| %>
+			<%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
+				<%= f.hidden_field :recorded_on, value: @today %>
 				<div>
 					<%= f.label :weight, "体重" %><br>
 					<%= f.number_field :weight, step: "0.1" %>
@@ -12,26 +13,33 @@
 					<%= f.number_field :body_fat_percentage, step: "0.1" %>
 				</div>
 			
-				<%= f.submit @daily_record.persisted? ? "更新" : "保存" %>
+				<%= f.submit(f.object.persisted? ? "更新" : "保存") %>
 			<% end %>
 	</section>
+<% else %>
+	<% if @goal_diff_kg %>
+		<section class="card">
+			目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
+		</section>
+	<% end %>
 <% end %>
 
 <section class="card">
 	<h2>今日のタスク</h2>
-		<% if @habits.any? %>
-			<ul class="tasks">
-				<% @habits.each do |habit| %>
-					<% done = @done_habit_ids.include?(habit.id) %>
-					<li class="task-item">
-						<%= button_to toggle_habit_check_path(habit_id: habit.id), method: :post, class: "check-btn" do %>
-							<%= check_box_tag "done_habit_ids[]", habit.id, done, disabled: true %>
-						<% end %>
-					<span class="task-label <%= 'done' if done %>"><%= habit.name %></span>
-					</li>
-				<% end %>
-			</ul>
-		<% else %>
-			<p>まだタスクがありません。<%= link_to "追加する", habits_path %></p>
+		<% @habits.each do |habit| %>
+			<% checked = @done_habit_ids.include?(habit.id) %>
+			
+			<%= form_with url: habit_checks_path, method: :post, local: true do %>
+				<%= hidden_field_tag :habit_id, habit.id %>
+				<%= hidden_field_tag :recorded_on, @today %>
+				
+				<%= hidden_field_tag :done, "0" %> 
+
+        <% cid = "habit_#{habit.id}" %>
+        <label for="<%= cid %>" style="display:flex;align-items:center;gap:.5rem;">
+          <%= check_box_tag :done, "1", checked, id: cid, onchange: "this.form.submit()" %>
+          <span><%= habit.name %></span>
+        </label>
+			<% end %>
 		<% end %>
 </section>

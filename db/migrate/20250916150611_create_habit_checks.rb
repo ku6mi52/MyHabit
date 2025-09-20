@@ -5,6 +5,7 @@ class CreateHabitChecks < ActiveRecord::Migration[7.2]
       t.references :habit, null: false, foreign_key: { on_delete: :cascade }
 
       t.timestamps
+      t.boolean :done, null: false, default: false
     end
     add_index :habit_checks, [:daily_record_id, :habit_id], unique: true
   end

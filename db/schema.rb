@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_16_150611) do
     t.bigint "habit_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "done", default: false, null: false
     t.index ["daily_record_id", "habit_id"], name: "index_habit_checks_on_daily_record_id_and_habit_id", unique: true
     t.index ["daily_record_id"], name: "index_habit_checks_on_daily_record_id"
     t.index ["habit_id"], name: "index_habit_checks_on_habit_id"

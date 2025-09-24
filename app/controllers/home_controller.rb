@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
 	def index
 		@today = Date.current
     @daily_record = current_user.daily_records.find_by(recorded_on: @today)

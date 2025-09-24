@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	  when :step1 then step1_onboarding_path
 	  when :step2 then step2_onboarding_path
 	  else
-	    authenticated_root_path
+	    root_path
 	  end
 	end
 	

@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
 
-  authenticated :user do
-    root "home#index", as: :authenticated_root
-  end
-  unauthenticated do
-    root "devise/sessions#new", as: :unauthenticated_root
-  end
+  root 'home#index'
+  devise_for :users
+  resources :users
 
   resource :onboarding, controller: :onboarding, only: [] do
     get   :step1
@@ -16,13 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :daily_records, except: [:show]
-  
+
   resources :habits, except: [:show]
-  
+
   resource :profile, only: [:show], controller: "profiles" do
-	  get  :edit_goals
-	  patch :update_goals
-	end
-	
-	post "habit_checks", to: "habit_checks#create", as: :habit_checks
+    get  :edit_goals
+    patch :update_goals
+  end
+
+  post "habit_checks", to: "habit_checks#create", as: :habit_checks
 end

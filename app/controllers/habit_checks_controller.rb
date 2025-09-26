@@ -8,6 +8,6 @@ class HabitChecksController < ApplicationController
 			date: (params[:recorded_on].presence || Date.current).to_date, 
 			done: params[:done]
 		)
-		redirect_back fallback_location: authenticated_root_path
+		redirect_back fallback_location: dashboard_path
 	end
 end

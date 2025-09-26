@@ -29,7 +29,7 @@ class OnboardingController < ApplicationController
 		 )
 	  
 	  if @user.save(context: :onboarding_step2)
-      redirect_to dashboard_path, notice: "オンボーディングが完了しました。"
+      redirect_to authenticated_root_path, notice: "オンボーディングが完了しました。"
     else
       flash.now[:alert] = "入力に誤りがあります"
       render :step2, status: :unprocessable_entity

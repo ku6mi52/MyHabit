@@ -1,6 +1,6 @@
-<% if @show_quick_form %>
+<% if @daily_record_form %>
 	<section class="card">
-		<h2 class="text-xl text-green-700">今日の記録</h2>
+		<h2 class="text-xl text-green-700">今日(<%= Date.today.strftime("%Y-%m-%d") %>)の記録</h2>
 			<%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
 				<%= f.hidden_field :recorded_on, value: @today %>
 				<div>
@@ -25,21 +25,13 @@
 <% end %>
 
 <section class="card">
-	<h2>今日のタスク</h2>
-		<% @habits.each do |habit| %>
-			<% checked = @done_habit_ids.include?(habit.id) %>
-			
-			<%= form_with url: habit_checks_path, method: :post, local: true do %>
-				<%= hidden_field_tag :habit_id, habit.id %>
-				<%= hidden_field_tag :recorded_on, @today %>
-				
-				<%= hidden_field_tag :done, "0" %> 
-
-        <% cid = "habit_#{habit.id}" %>
-        <label for="<%= cid %>" style="display:flex;align-items:center;gap:.5rem;">
-          <%= check_box_tag :done, "1", checked, id: cid, onchange: "this.form.submit()" %>
-          <span><%= habit.name %></span>
-        </label>
-			<% end %>
-		<% end %>
+	<h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
+      <%= form_with url: habit_checks_path, method: :post, local: true do |form| %>
+        <%= fields_for :habit_check, @habit_check do |habit_checks_form| %>
+          <%= habit_checks_form.hidden_field :habit_id %>
+          <%= habit_checks_form.check_box :done %>
+          <%= habit_checks_form.label :done, habit_checks_form.habit.name %>
+        <% end %>
+          <%= form.submit "送信する" %>
+      <% end %>
 </section>

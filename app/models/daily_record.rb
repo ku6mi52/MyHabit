@@ -9,7 +9,7 @@ class DailyRecord < ApplicationRecord
 
   validate :recorded_on_cannot_be_in_the_future
 
-	scope :recent, -> { order(recorded_on: :desc) }
+  scope :recent, -> { order(recorded_on: :desc) }
 
   private
 

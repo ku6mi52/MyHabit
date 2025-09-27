@@ -4,10 +4,26 @@ class HabitCheck < ApplicationRecord
 	
 	validates :habit_id, uniqueness: { scope: :daily_record_id }
 	
-	def self.set_done!(user:, habit_id:, date:, done:)
-		dr = user.daily_records.find_or_create_by!(recorded_on: date)
-		hc = find_or_create_by!(daily_record: dr, habit_id: habit_id)
-		hc.update!(done: ActiveModel::Type::Boolean.new.cast(done))
-		hc
+  scope :checked, -> { where(done: true) }
+
+	def self.set_done!(user:, habit_id:, daily_record_id:, done:)
+		daily_record = user.daily_records.find_or_create_by!(recorded_on: date)
+		habit_check = find_or_create_by!(daily_record: daily_record, habit_id: habit_id)
+		habit_check.update!(done: ActiveModel::Type::Boolean.new.cast(done))
+		habit_check
 	end
+
+  def self.tasks_completion_rate(daily_records)
+    Array(daily_records).map { |r|
+      done = r.habit_checks.checked.count
+      total_tasks = r.user.habits.count 
+      rate = 
+        if total_tasks == 0
+          0
+        else
+          done * 100 / total_tasks
+        end
+      [r.id, rate]
+    }.to_h
+  end
 end

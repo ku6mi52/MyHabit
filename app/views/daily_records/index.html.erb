@@ -1,28 +1,28 @@
 <h1>記録一覧</h1>
 
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>体重</th>
+      <th>体脂肪率</th>
+      <th>タスクの達成率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pagenate @daily_records.each do |daily_record| %>
       <tr>
-        <th>日付</th>
-        <th>体重</th>
-        <th>体脂肪率</th>
-        <th></th>
+        <td><%= daily_record.recorded_on %></td>
+        <td><%= daily_record.weight %></td>
+        <td><%= daily_record.body_fat_percentage %></td>
+        <td><%= @rates[daily_record.id] %></td>
+        <td>
+          <%= link_to "編集", edit_daily_record_path(daily_record) %> |
+          <%= button_to "削除", daily_record_path(daily_record),
+          method: :delete,
+          form: { data: { turbo_confirm: "削除しますか？" } } %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @daily_records.each do |daily_record| %>
-        <tr>
-          <td><%= daily_record.recorded_on %></td>
-          <td><%= daily_record.weight %></td>
-          <td><%= daily_record.body_fat_percentage %></td>
-          <td>
-            <%= link_to "編集", edit_daily_record_path(daily_record) %> |
-            <%= button_to "削除", daily_record_path(daily_record),
-                          method: :delete,
-                          form: { data: { turbo_confirm: "削除しますか？" } } %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>

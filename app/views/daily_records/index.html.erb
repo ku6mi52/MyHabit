@@ -9,8 +9,10 @@
       <th>タスクの達成率</th>
     </tr>
   </thead>
+
+  <%= paginate @daily_records %>
   <tbody>
-    <% pagenate @daily_records.each do |daily_record| %>
+    <% @daily_records.each do |daily_record| %>
       <tr>
         <td><%= daily_record.recorded_on %></td>
         <td><%= daily_record.weight %></td>
@@ -25,4 +27,5 @@
       </tr>
     <% end %>
   </tbody>
+  <%= paginate @daily_records %>
 </table>

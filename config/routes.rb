@@ -21,5 +21,9 @@ Rails.application.routes.draw do
     patch :update_goals
   end
 
-  post "habit_checks", to: "habit_checks#create", as: :habit_checks
+  resources :habit_checks, only: [] do
+    collection do
+      patch "today_tasks_update"
+    end
+  end
 end

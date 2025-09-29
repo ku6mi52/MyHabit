@@ -1,37 +1,46 @@
 <% if @daily_record_form %>
-	<section class="card">
-		<h2 class="text-xl text-green-700">今日(<%= Date.today.strftime("%Y-%m-%d") %>)の記録</h2>
-			<%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
-				<%= f.hidden_field :recorded_on, value: @today %>
-				<div>
-					<%= f.label :weight, "体重" %><br>
-					<%= f.number_field :weight, step: "0.1" %>
-				</div>
-			
-				<div>
-					<%= f.label :body_fat_percentage, "体脂肪率" %><br>
-					<%= f.number_field :body_fat_percentage, step: "0.1" %>
-				</div>
-			
-				<%= f.submit(f.object.persisted? ? "更新" : "保存") %>
-			<% end %>
-	</section>
+  <section class="card">
+    <h2 class="text-xl text-green-700">今日(<%= Date.today.strftime("%Y-%m-%d") %>)の記録</h2>
+
+    <%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
+      <%= f.hidden_field :recorded_on, value: @today %>
+      <div>
+        <%= f.label :weight, "体重" %><br>
+        <%= f.number_field :weight, step: "0.1" %>
+      </div>
+
+      <div>
+        <%= f.label :body_fat_percentage, "体脂肪率" %><br>
+        <%= f.number_field :body_fat_percentage, step: "0.1" %>
+      </div>
+
+      <%= f.submit(f.object.persisted? ? "更新" : "保存") %>
+    <% end %>
+  </section>
 <% else %>
-	<% if @goal_diff_kg %>
-		<section class="card">
-			目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
-		</section>
-	<% end %>
+  <% if @goal_diff_kg %>
+    <section class="card">
+      目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
+    </section>
+  <% end %>
 <% end %>
 
+
 <section class="card">
-	<h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
-      <%= form_with url: habit_checks_path, method: :post, local: true do |form| %>
-        <%= fields_for :habit_check, @habit_check do |habit_checks_form| %>
-          <%= habit_checks_form.hidden_field :habit_id %>
-          <%= habit_checks_form.check_box :done %>
-          <%= habit_checks_form.label :done, habit_checks_form.habit.name %>
-        <% end %>
-          <%= form.submit "送信する" %>
+  <h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
+
+  <%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :recorded_on, value: @today %>
+    <ul>
+      <% @habit_checks.each do |habit_check| %>
+        <li>
+          <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
+            <%= f.check_box :done %>
+            <%= f.label :done, habit_check.habit.name %>
+          <% end %>
+        </li>
       <% end %>
+    </ul>
+    <%= form.submit "送信する" %>
+  <% end %>
 </section>

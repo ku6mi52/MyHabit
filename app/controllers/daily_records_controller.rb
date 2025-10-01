@@ -3,8 +3,13 @@ class DailyRecordsController < ApplicationController
   before_action :set_daily_record, only: [:edit, :update, :destroy]
 
   def index
-    @daily_records = current_user.daily_records.recent.page(params[:page]).per(30)
-    @rates = HabitCheck.tasks_completion_rate(@daily_records)
+    to = Date.current
+    from = to - 29.days
+    all_dates = (from..to).to_a.reverse
+    @dates = Kaminari.paginate_array(all_dates).page(params[:page]).per(30)
+    @daily_record = current_user.daily_records.where(recorded_on: @dates)
+    @daily_records = @daily_record.index_by(&:recorded_on)
+    @rates = HabitCheck.tasks_completion_rate(@daily_record)
   end
 
   def new

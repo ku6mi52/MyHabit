@@ -1,20 +1,21 @@
 class HabitChecksController < ApplicationController
-	before_action :authenticate_user!
-	
-	def create
-    p = habit_check_params
-    HabitCheck.set_done!(
+  before_action :authenticate_user!
+
+  def today_tasks_update
+
+    recorded_on = Date.current 
+
+    HabitCheck.habit_checks_for_dashboard(
       user: current_user, 
-      habit_id: p[:habit_id],
-      daily_record_id: p[:daily_record_id], 
-      done: p[:done]
+      recorded_on: recorded_on, 
+      checks: habit_check_params
     )
-		redirect_back fallback_location: dashboard_path
-	end
+    redirect_to dashboard_path, notice: "習慣チェックを記録しました！"
+  end
 
   private
 
   def habit_check_params
-    params.require(:habit_check).permit(:habit_id, :daily_record_id, :done)
+    params.fetch(:habit_checks, {}).permit!.to_h
   end
 end

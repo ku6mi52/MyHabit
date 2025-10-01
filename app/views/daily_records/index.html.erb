@@ -9,20 +9,33 @@
       <th>タスクの達成率</th>
     </tr>
   </thead>
+
+  <%= paginate @daily_records %>
   <tbody>
-    <% pagenate @daily_records.each do |daily_record| %>
+    <% @daily_records.each do |daily_record| %>
       <tr>
         <td><%= daily_record.recorded_on %></td>
-        <td><%= daily_record.weight %></td>
-        <td><%= daily_record.body_fat_percentage %></td>
-        <td><%= @rates[daily_record.id] %></td>
         <td>
-          <%= link_to "編集", edit_daily_record_path(daily_record) %> |
-          <%= button_to "削除", daily_record_path(daily_record),
-          method: :delete,
-          form: { data: { turbo_confirm: "削除しますか？" } } %>
+          <%= daily_record.weight %>
+          <%= form_with url: "/daily_records/:id", method: :patch, local: true do |form| %>
+            <%= form.label :weight, "編集する" %>
+            <%= form.number_field :weight %>
+            <%= form.submit "更新" %>
+            <%= form.button "削除", formmethod: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+          <% end %>
         </td>
+        <td>
+          <%= daily_record.body_fat_percentage %>
+          <%= form_with url: "/daily_records/:id", method: :patch, local: true do |form| %>
+            <%= form.label :body_fat_percentage, "編集する" %>
+            <%= form.number_field :body_fat_percentage %>
+            <%= form.submit "更新" %>
+            <%= form.button "削除", formmethod: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+          <% end %>
+        </td>
+        <td><%= @rates[daily_record.id] %></td>
       </tr>
     <% end %>
   </tbody>
+  <%= paginate @daily_records %>
 </table>

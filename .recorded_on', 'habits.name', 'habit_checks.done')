@@ -1,0 +1,73 @@
+=> 
+[#<HabitCheck:0x0000ffff8d2b6f00
+  id: 3,
+  daily_record_id: 4,
+  habit_id: 1,
+  created_at: "2025-09-20 23:08:07.600966000 +0000",
+  updated_at: "2025-09-20 23:08:07.602629000 +0000",
+  done: true>,
+ #<HabitCheck:0x0000ffff8b78ef70
+  id: 4,
+  daily_record_id: 6,
+  habit_id: 2,
+  created_at: "2025-09-24 11:26:30.065656000 +0000",
+  updated_at: "2025-09-24 11:26:38.097540000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99d218
+  id: 5,
+  daily_record_id: 6,
+  habit_id: 1,
+  created_at: "2025-09-24 11:26:49.239364000 +0000",
+  updated_at: "2025-09-24 11:26:49.243269000 +0000",
+  done: true>,
+ #<HabitCheck:0x0000ffff8f99d0d8
+  id: 8,
+  daily_record_id: 7,
+  habit_id: 3,
+  created_at: "2025-09-27 07:04:06.576458000 +0000",
+  updated_at: "2025-09-27 07:04:13.431575000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99cf98
+  id: 6,
+  daily_record_id: 7,
+  habit_id: 1,
+  created_at: "2025-09-27 07:03:01.459347000 +0000",
+  updated_at: "2025-09-27 09:14:47.740157000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99ce58
+  id: 7,
+  daily_record_id: 7,
+  habit_id: 2,
+  created_at: "2025-09-27 07:04:03.831538000 +0000",
+  updated_at: "2025-09-27 09:14:48.630845000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99cbd8
+  id: 9,
+  daily_record_id: 8,
+  habit_id: 1,
+  created_at: "2025-09-28 03:37:42.305121000 +0000",
+  updated_at: "2025-09-28 03:37:42.305121000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99ca98
+  id: 10,
+  daily_record_id: 8,
+  habit_id: 2,
+  created_at: "2025-09-28 03:37:42.313255000 +0000",
+  updated_at: "2025-09-28 03:37:42.313255000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99c958
+  id: 11,
+  daily_record_id: 8,
+  habit_id: 3,
+  created_at: "2025-09-28 03:37:42.322978000 +0000",
+  updated_at: "2025-09-28 03:37:42.322978000 +0000",
+  done: false>,
+ #<HabitCheck:0x0000ffff8f99c818
+  id: 12,
+  daily_record_id: 9,
+  habit_id: 1,
+  created_at: "2025-09-29 06:26:02.728670000 +0000",
+  updated_at: "2025-09-29 06:26:02.728670000 +0000",
+  done: false>,
+ "..."]
+

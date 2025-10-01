@@ -14,8 +14,19 @@
         <%= f.number_field :body_fat_percentage, step: "0.1" %>
       </div>
 
-      <%= f.submit(f.object.persisted? ? "更新" : "保存") %>
-    <% end %>
+      <div>
+        <%= f.label :motivation, "モチベーション" %><br>
+        <%= form.hidden_field :recorded_on, value: date %>
+        <%= form.radio_button :motivation, "very_low" %>
+        <%= form.label :motivation, "😖" %>
+        <%= form.radio_button :motivation, "low" %>
+        <%= form.label :motivation, "😑" %>
+        <%= form.radio_button :motivation, "high" %>
+        <%= form.label :motivation, "🙂" %>
+        <%= form.radio_button :motivation, "very_high" %>
+        <%= form.label :motivation, "😆" %>
+        <%= f.submit(f.object.persisted? ? "更新" : "保存") %>
+      <% end %>
   </section>
 <% else %>
   <% if @goal_diff_kg %>
@@ -26,20 +37,20 @@
 <% end %>
 
 <section class="card">
-<h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
+  <h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
 
-<%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
-  <%= form.hidden_field :recorded_on, value: @today %>
-  <ul>
-    <% @habit_checks.each do |habit_check| %>
-      <li>
-        <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
-          <%= f.check_box :done %>
-          <%= f.label :done, habit_check.habit.name %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <%= form.submit "送信する" %>
-<% end %>
+  <%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :recorded_on, value: @today %>
+    <ul>
+      <% @habit_checks.each do |habit_check| %>
+        <li>
+          <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
+            <%= f.check_box :done %>
+            <%= f.label :done, habit_check.habit.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= form.submit "送信する" %>
+  <% end %>
 </section>

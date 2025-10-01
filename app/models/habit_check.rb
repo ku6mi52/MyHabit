@@ -1,9 +1,9 @@
 class HabitCheck < ApplicationRecord
-	belongs_to :daily_record
-	belongs_to :habit
-	
-	validates :habit_id, uniqueness: { scope: :daily_record_id }
-	
+  belongs_to :daily_record
+  belongs_to :habit
+
+  validates :habit_id, uniqueness: { scope: :daily_record_id }
+
   scope :checked, -> { where(done: true) }
 
   def self.habit_checks_for_dashboard(user:, recorded_on:, checks: nil)
@@ -29,7 +29,6 @@ class HabitCheck < ApplicationRecord
       end
     end
   end
-
 
   def self.tasks_completion_rate(daily_records)
     Array(daily_records).map { |r|

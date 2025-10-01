@@ -10,10 +10,12 @@
     </tr>
   </thead>
 
+
   <%= paginate @dates %>
   <tbody>
     <% @dates.each do |date| %>
       <% daily_record = @daily_records[date] %>
+
       <tr>
         <td><%= date.strftime("%Y年%m月%d日") %></td>
         <% if daily_record.present? %>
@@ -54,4 +56,5 @@
     <% end %>
   </tbody>
   <%= paginate @dates %>
+
 </table>

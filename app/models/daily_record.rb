@@ -6,6 +6,8 @@ class DailyRecord < ApplicationRecord
   validates :recorded_on, presence: true, uniqueness: { scope: :user_id }
 	validates :weight, allow_nil: true, numericality: { greater_than: 0, less_than: 200 }
 	validates :body_fat_percentage, allow_nil: true, numericality: { greater_than: 0, less_than: 100 }
+  
+  enum :motivation, { 😖: 0, 😑: 1, 🙂: 2, 😆: 3 }
 
   validate :recorded_on_cannot_be_in_the_future
 

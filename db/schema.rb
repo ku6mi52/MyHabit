@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_27_062209) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_01_173653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_27_062209) do
     t.float "body_fat_percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "motivation", null: true
     t.index ["user_id", "recorded_on"], name: "index_daily_records_on_user_id_and_recorded_on", unique: true
     t.index ["user_id"], name: "index_daily_records_on_user_id"
   end

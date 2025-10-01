@@ -3,7 +3,7 @@ class DailyRecordsController < ApplicationController
   before_action :set_daily_record, only: [:edit, :update, :destroy]
 
   def index
-    @daily_records = current_user.daily_records.recent(params[:page]).per(30)
+    @daily_records = current_user.daily_records.recent.page(params[:page]).per(30)
     @rates = HabitCheck.tasks_completion_rate(@daily_records)
   end
 

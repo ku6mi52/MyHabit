@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
+/* ここでテーマ変数を定義（必要なときだけ） */
 @theme {
-  /* `colors` は直接 `--color-*` 形式で定義 */
-  --color-brand: #1fb6ff;
+  /* 例：3xl ブレークポイントを追加したい場合 */
+  --breakpoint-3xl: 1920px;
 
-  /* `fontFamily` は `--font-family-*` 形式で定義 */
-  --font-family-sans: "Inter", "sans-serif";
-
-  /* `screens` は `@screen` ルールで定義 */
-  @screen "3xl" {
-    min-width: 1920px;
-  }
+  /* 色やフォントなどもここでOK
+  --color-brand: #4f46e5;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  */
 }
 
+/* DaisyUI を使う場合 */
+@plugin "daisyui";

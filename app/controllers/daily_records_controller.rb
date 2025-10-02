@@ -49,7 +49,7 @@ class DailyRecordsController < ApplicationController
   end
 
   def daily_record_params
-    params.require(:daily_record).permit(:recorded_on, :weight, :body_fat_percentage)
+    params.require(:daily_record).permit(:recorded_on, :weight, :body_fat_percentage, :motivation)
   end
 end
 

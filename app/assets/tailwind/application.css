@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* `colors` は直接 `--color-*` 形式で定義 */
+  --color-brand: #1fb6ff;
+
+  /* `fontFamily` は `--font-family-*` 形式で定義 */
+  --font-family-sans: "Inter", "sans-serif";
+
+  /* `screens` は `@screen` ルールで定義 */
+  @screen "3xl" {
+    min-width: 1920px;
+  }
+}
+

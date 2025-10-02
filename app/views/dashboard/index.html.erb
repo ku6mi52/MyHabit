@@ -16,17 +16,19 @@
 
       <div>
         <%= f.label :motivation, "モチベーション" %><br>
-        <%= form.hidden_field :recorded_on, value: date %>
-        <%= form.radio_button :motivation, "very_low" %>
-        <%= form.label :motivation, "😖" %>
-        <%= form.radio_button :motivation, "low" %>
-        <%= form.label :motivation, "😑" %>
-        <%= form.radio_button :motivation, "high" %>
-        <%= form.label :motivation, "🙂" %>
-        <%= form.radio_button :motivation, "very_high" %>
-        <%= form.label :motivation, "😆" %>
-        <%= f.submit(f.object.persisted? ? "更新" : "保存") %>
-      <% end %>
+        <%= f.hidden_field :recorded_on, value: @today %>
+        <%= f.radio_button :motivation, "😖" %>
+        <%= f.label :motivation, "😖" %>
+        <%= f.radio_button :motivation, "😑" %>
+        <%= f.label :motivation, "😑" %>
+        <%= f.radio_button :motivation, "🙂" %>
+        <%= f.label :motivation, "🙂" %>
+        <%= f.radio_button :motivation, "😆" %>
+        <%= f.label :motivation, "😆" %>
+      </div>
+        
+      <%= f.submit "保存" %>
+    <% end %>
   </section>
 <% else %>
   <% if @goal_diff_kg %>

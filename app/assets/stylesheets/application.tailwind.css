@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* ここでテーマ変数や色などを宣言（必要なときだけ） */
+@theme {
+  /* 例:
+  --color-brand: #4f46e5;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  */
+}
+
+/* DaisyUI v5 などのプラグインを使うなら @plugin を書くだけ */
+@plugin "daisyui";

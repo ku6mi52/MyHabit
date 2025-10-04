@@ -29,15 +29,7 @@ class User < ApplicationRecord
 	  daily_records.find_by(recorded_on: date)
 	end
 
-	def done_habit_ids_on(date)
-		if (dr = daily_record_on(date))
-      dr.habit_checks.where(done: true).pluck(:habit_id)
-		else
-			[]
-		end
-	end
-	
-	def goal_weight_diff_on(date)
+  def goal_weight_diff_on(date)
     dr = daily_records.find_by(recorded_on: date)
     return nil unless dr&.weight.present? && goal_weight.present?
     goal_weight - dr.weight

@@ -1,10 +1,9 @@
-<div class="bg-blue-600 text-white p-4 rounded-2xl shadow-lg mb-6">
-  Tailwind OK! <span class="font-bold">これは Tailwind のスタイルです</span>
-</div>
+<h1><%= Date.today.strftime("%Y年%m月%d日") %></h1>
+<p>Hi, <%= current_user.username %>！</p>
 
 <% if @daily_record_form %>
   <section class="card">
-    <h2 class="text-xl text-green-700">今日(<%= Date.today.strftime("%Y-%m-%d") %>)の記録</h2>
+    <h2 class="text-xl text-green-700">今日の記録</h2>
 
     <%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
       <%= f.hidden_field :recorded_on, value: @today %>
@@ -43,7 +42,7 @@
 <% end %>
 
 <section class="card">
-  <h2>今日(<%= Date.today.strftime("%Y-%m-%d") %>)のタスク</h2>
+  <h2>今日のタスク</h2>
 
   <%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
     <%= form.hidden_field :recorded_on, value: @today %>

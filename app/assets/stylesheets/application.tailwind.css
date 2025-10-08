@@ -2,10 +2,18 @@
 
 /* ここでテーマ変数や色などを宣言（必要なときだけ） */
 @theme {
-  /* 例:
-  --color-brand: #4f46e5;
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  */
+  --font-sans-en: "Montserrat", ui-sans-serif, system-ui, -apple-system,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial,
+  "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --font-sans-ja: "Noto Sans JP", "Montserrat",
+  "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+  "Yu Gothic", "Meiryo",
+  ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .font-en { font-family: var(--font-sans-en); }
+  .font-ja { font-family: var(--font-sans-ja); }
 }
 
 /* DaisyUI v5 などのプラグインを使うなら @plugin を書くだけ */

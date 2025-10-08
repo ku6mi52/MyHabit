@@ -42,7 +42,7 @@
     <% end %>
   <% end %>
   <section class="card">
-    <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">今日のタスク</h2>
+    <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">習慣チェック</h2>
 
     <div class="box-border border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
       <%= form.hidden_field :recorded_on, value: @today %>

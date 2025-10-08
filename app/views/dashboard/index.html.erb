@@ -1,61 +1,62 @@
-<h1><%= Date.today.strftime("%Y年%m月%d日") %></h1>
-<p>Hi, <%= current_user.username %>！</p>
+<div class="w-full px-8">
+  <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px]"><%= Date.today.strftime("%Y年%m月%d日") %></h1>
+  <p class="font-[Montserrat] text-white font-semibold text-xl">Hi, <%= current_user.username %>！</p>
 
-<% if @daily_record_form %>
-  <section class="card">
-    <h2 class="text-xl text-green-700">今日の記録</h2>
-
-    <%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
-      <%= f.hidden_field :recorded_on, value: @today %>
-      <div>
-        <%= f.label :weight, "体重" %><br>
-        <%= f.number_field :weight, step: "0.1" %>
-      </div>
-
-      <div>
-        <%= f.label :body_fat_percentage, "体脂肪率" %><br>
-        <%= f.number_field :body_fat_percentage, step: "0.1" %>
-      </div>
-
-      <div>
-        <%= f.label :motivation, "モチベーション" %><br>
-        <%= f.hidden_field :recorded_on, value: @today %>
-        <%= f.radio_button :motivation, "😖" %>
-        <%= f.label :motivation, "😖" %>
-        <%= f.radio_button :motivation, "😑" %>
-        <%= f.label :motivation, "😑" %>
-        <%= f.radio_button :motivation, "🙂" %>
-        <%= f.label :motivation, "🙂" %>
-        <%= f.radio_button :motivation, "😆" %>
-        <%= f.label :motivation, "😆" %>
-      </div>
-        
-      <%= f.submit "保存" %>
-    <% end %>
-  </section>
-<% else %>
-  <% if @goal_diff_kg %>
+  <% if @daily_record_form %>
     <section class="card">
-      目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
+      <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">今日の記録</h2>
+
+      <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
+        <%= f.hidden_field :recorded_on, value: @today %>
+        <div class="mx-[20px] text-[#656565] focus:outline-none">
+          <%= f.label :weight, "体重" %>
+          <div class="box-content h-[45px] bg-white rounded-[20px] mt-[0px] focus:outline-none focus:border-b-2 focus:border-indigo-500"><%= f.number_field :weight, step: "0.1" %></div>
+        </div>
+
+        <div class="mt-[24px] mx-[20px] text-[#656565]">
+          <%= f.label :body_fat_percentage, "体脂肪率" %>
+          <div class="box-content h-[45px] bg-white rounded-[20px]"><%= f.number_field :body_fat_percentage, step: "0.1" %></div>
+        </div>
+
+        <div class="text-[#656565] mx-[20px]">
+          <%= f.label :motivation, "モチベーション" %><br>
+          <%= f.hidden_field :recorded_on, value: @today %>
+          <%= f.radio_button :motivation, "😖" %>
+          <%= f.label :motivation, "😖" %>
+          <%= f.radio_button :motivation, "😑" %>
+          <%= f.label :motivation, "😑" %>
+          <%= f.radio_button :motivation, "🙂" %>
+          <%= f.label :motivation, "🙂" %>
+          <%= f.radio_button :motivation, "😆" %>
+          <%= f.label :motivation, "😆" %>
+        </div>
+
+        <div class="box-content h-[45px] rounded-[20px] bg-[#2EB7AC] text-white font-regular mt-[42px] mx-[20px] leading-[45px] text-center"><%= f.submit "保存" %></div></div>
+    <% end %>
     </section>
+  <% else %>
+    <% if @goal_diff_kg %>
+      <section class="card">
+        目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
+      </section>
+    <% end %>
   <% end %>
-<% end %>
+  <section class="card">
+    <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">今日のタスク</h2>
 
-<section class="card">
-  <h2>今日のタスク</h2>
-
-  <%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
-    <%= form.hidden_field :recorded_on, value: @today %>
-    <ul>
-      <% @habit_checks.each do |habit_check| %>
-        <li>
-          <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
-            <%= f.check_box :done %>
-            <%= f.label :done, habit_check.habit.name %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-    <%= form.submit "送信する" %>
-  <% end %>
-</section>
+    <div class="box-border border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
+      <%= form.hidden_field :recorded_on, value: @today %>
+      <ul>
+        <% @habit_checks.each do |habit_check| %>
+          <li class="text-[#2E2E2E] border-b-1 mx-[20px] mb-[18px]">
+            <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
+              <%= f.check_box :done %>
+              <%= f.label :done, habit_check.habit.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="box-content h-[45px] rounded-[20px] bg-[#2EB7AC] text-white font-regular m-auto mt-[42px] mx-[20px] leading-[45px] text-center"><%= form.submit "保存" %></div>
+    <% end %></div>
+  </section>
+</div>

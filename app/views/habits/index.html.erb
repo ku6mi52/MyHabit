@@ -1,15 +1,45 @@
-<h1>習慣一覧</h1>
+<div class="px-[24px]">
+  <h1 class="text-[24px] font-bold text-white pt-[24px] mb-[32px]">習慣一覧</h1>
 
-<p><%= link_to "タスク追加", new_habit_path %></p>
+  <table>
+    <tbody>
+      <% @habits.each do |habit| %>
+        <tr>
+          <td class="p-0">
+            <div class="box-border border-1 border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px]">
+              <div class="inline mr-[24px]"><%= habit.name %></div>
+              <div class="inline rounded-[20px] box-content bg-[#2EB7AC] text-white py-[12px] px-[16px]"><%= link_to "編集", edit_habit_path(habit) %></div>
+              <div class="inline-block ml-[24px]"><%= button_to "削除", habit_path(habit), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<table>
-	<tbody>
-		<% @habits.each do |habit| %>
-			<tr>
-				<td><%= habit.name %></td>
-				<td><%= link_to "編集", edit_habit_path(habit) %></td>
-				<td><%= button_to "削除", habit_path(habit), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<p class="mx-[24px] mb-[24px]">
+<%= link_to new_habit_path,
+  class: "inline-flex fixed bottom-24 right-24",
+  title: "タスク追加", aria: { label: "タスク追加" } do %>
+  <svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_d_360_668)">
+    <circle cx="41" cy="37" r="34" fill="#2EB7AC"/>
+    </g>
+    <path d="M38.648 46.608V39.92H32.248V35.92H38.648V29.2H42.808V35.92H49.24V39.92H42.808V46.608H38.648Z" fill="white"/>
+    <defs>
+    <filter id="filter0_d_360_668" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dy="4"/>
+    <feGaussianBlur stdDeviation="3.5"/>
+    <feComposite in2="hardAlpha" operator="out"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_360_668"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_360_668" result="shape"/>
+    </filter>
+    </defs>
+  </svg>
+  <span class="sr-only">タスク追加</span>
+<% end %>
+</p>

@@ -1,5 +1,5 @@
 <div class="w-full px-8">
-  <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px]"><%= Date.today.strftime("%Y年%m月%d日") %></h1>
+  <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px] pt-[24px]"><%= Date.today.strftime("%Y年%m月%d日") %></h1>
   <p class="font-[Montserrat] text-white font-semibold text-xl">Hi, <%= current_user.username %>！</p>
 
   <% if @daily_record_form %>
@@ -18,7 +18,7 @@
           <div class="box-content h-[45px] bg-white rounded-[20px]"><%= f.number_field :body_fat_percentage, step: "0.1" %></div>
         </div>
 
-        <div class="text-[#656565] mx-[20px]">
+        <div class="text-[#656565] mx-[20px] mt-[24px]">
           <%= f.label :motivation, "モチベーション" %><br>
           <%= f.hidden_field :recorded_on, value: @today %>
           <%= f.radio_button :motivation, "😖" %>

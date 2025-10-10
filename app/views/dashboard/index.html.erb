@@ -4,7 +4,7 @@
 
   <% if @daily_record_form %>
     <section class="card">
-      <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">今日の記録</h2>
+      <h2 class="text-[24px] text-white font-bold mt-[48px] mb-[16px]">今日の記録</h2>
 
       <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
         <%= f.hidden_field :recorded_on, value: @today %>
@@ -42,7 +42,7 @@
     <% end %>
   <% end %>
   <section class="card">
-    <h2 class="text-xl text-white font-bold mt-[48px] mb-[16px]">習慣チェック</h2>
+    <h2 class="text-[24px] text-white font-bold mt-[48px] mb-[16px]">習慣チェック</h2>
 
     <div class="box-border border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
       <%= form.hidden_field :recorded_on, value: @today %>

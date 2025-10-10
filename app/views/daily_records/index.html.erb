@@ -1,81 +1,74 @@
-<h1>記録一覧</h1>
+<div class="px-[24px]">
+  <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px] py-[24px]">記録一覧</h1>
+  <div class="box-border border-1 border-white bg-white/30 rounded-[20px] text-[#656565]">
+    <table>
+      <thead class="border-b-1 border-[#656565]">
+        <tr class="text-[#656565] font-bold">
+          <th>日付</th>
+          <th>体重</th>
+          <th>体脂肪率</th>
+          <th>モチベーション</th>
+          <th>タスクの達成率</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>日付</th>
-      <th>体重</th>
-      <th>体脂肪率</th>
-      <th>モチベーション</th>
-      <th>タスクの達成率</th>
-    </tr>
-  </thead>
 
+      <%= paginate @dates %>
+      <tbody>
+        <% @dates.each do |date| %>
+          <% daily_record = @daily_records[date] %>
 
-  <%= paginate @dates %>
-  <tbody>
-    <% @dates.each do |date| %>
-      <% daily_record = @daily_records[date] %>
+          <tr class="border-b-1 border-[#656565]">
+            <td class="p-[24px]"><%= date.strftime("%Y／%m／%d") %></td>
+            <td class="inline-block m-[24px]">
+              <% if daily_record %>
+                <%= form_with model: daily_record, url: daily_record_path(daily_record), method: :patch, local: true do |form| %>
+                  <%= form.number_field :weight %><p class="inline-block">kg</p>
+                  <div class="inline-block box-content bg-[#2EB7AC] text-white px-[16px] py-[12px] rounded-[20px]"><%= form.submit "更新" %></div>
+                <% end %>
+                <div class="inline-block"><% if daily_record.weight.present? %>
+                  <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { weight: nil } }, data: { turbo_confirm: "体重を削除しますか？" } %>
+                <% end %></div>
+              <% else %>
+                <div class="box-content bg-[#2EB7AC] text-white rounded-[20px] px-[85px] py-[12px]"><%= link_to "新規記録作成", new_daily_record_path %></div> 
+              <% end %>
+            </td>
 
-      <tr>
-        <td><%= date.strftime("%Y年%m月%d日") %></td>
-        <td>
-          <% if daily_record %>
-            <%= form_with model: daily_record, url: daily_record_path(daily_record), method: :patch, local: true do |form| %>
-              <%= form.number_field :weight %>
-              <%= form.submit "更新" %>
-            <% end %>
-            <% if daily_record.weight.present? %>
-              <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { weight: nil } }, data: { turbo_confirm: "体重を削除しますか？" } %>
-            <% end %>
-          <% else %>
-            <%= form_with url: daily_records_path, scope: :daily_record, method: :post, local: true do |form| %>
-              <%= form.hidden_field :recorded_on, value: date %>
-              <%= form.number_field :weight %>
-              <%= form.submit "保存" %>
-            <% end %>
-          <% end %>
-        </td>
+            <td class="inline-block m-[24px]">
+              <% if daily_record %>
+                <%= form_with model: daily_record, url: daily_record_path(daily_record), method: :patch, local: true do |form| %>
+                  <%= form.number_field :body_fat_percentage %><p class="inline-block">%</p>
+                  <div class="iniline-block box-content bg-[#2EB7AC] text-white px-[16px] py-[12px] rounded-[20px]"><%= form.submit "更新" %></div>
+                <% end %>
+                <div class="inline-block"><% if daily_record.body_fat_percentage.present? %>
+                  <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { body_fat_percentage: nil } }, data: { turbo_confirm: "体脂肪率を削除しますか？" } %>
+                <% end %></div>
+              <% end %>
+            </td>
 
-        <td>
-          <% if daily_record %>
-            <%= form_with model: daily_record, url: daily_record_path(daily_record), method: :patch, local: true do |form| %>
-              <%= form.number_field :body_fat_percentage %>
-              <%= form.submit "更新" %>
-            <% end %>
-            <% if daily_record.body_fat_percentage.present? %>
-              <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { body_fat_percentage: nil } }, data: { turbo_confirm: "体脂肪率を削除しますか？" } %>
-            <% end %>
-          <% else %>
-            <%= form_with url: daily_records_path, scope: :daily_record, method: :post, local: true do |form| %>
-              <%= form.hidden_field :recorded_on, value: date %>
-              <%= form.number_field :body_fat_percentage %>
-              <%= form.submit "保存" %>
-            <% end %>
-          <% end %>
-        </td>
-
-        <td>
-          <% if daily_record %>
-            <%= daily_record.motivation %>
-          <% else %>
-            <%= form_with url: daily_records_path, scope: :daily_record, method: :post, local: true do |form| %>
-              <%= form.hidden_field :recorded_on, value: date %>
-              <%= form.radio_button :motivation, "😖" %>
-              <%= form.label :motivation, "😖" %>
-              <%= form.radio_button :motivation, "😑" %>
-              <%= form.label :motivation, "😑" %>
-              <%= form.radio_button :motivation, "🙂" %>
-              <%= form.label :motivation, "🙂" %>
-              <%= form.radio_button :motivation, "😆" %>
-              <%= form.label :motivation, "😆" %>
-              <%= form.submit "保存" %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><% if daily_record %><%= @rates[daily_record.id] %>%<% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  <%= paginate @dates %>
-</table>
+            <td class="p-[24px]">
+              <% if daily_record %>
+                <%= daily_record.motivation %>
+              <% else %>
+                <%= form_with url: daily_records_path, scope: :daily_record, method: :post, local: true do |form| %>
+                  <%= form.hidden_field :recorded_on, value: date %>
+                  <%= form.radio_button :motivation, "😖" %>
+                  <%= form.label :motivation, "😖" %>
+                  <%= form.radio_button :motivation, "😑" %>
+                  <%= form.label :motivation, "😑" %>
+                  <%= form.radio_button :motivation, "🙂" %>
+                  <%= form.label :motivation, "🙂" %>
+                  <%= form.radio_button :motivation, "😆" %>
+                  <%= form.label :motivation, "😆" %>
+                  <%= form.submit "保存" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="p-[24px]"><% if daily_record %><%= @rates[daily_record.id] %>%<% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <%= paginate @dates %>
+    </table>
+  </div>
+</div>

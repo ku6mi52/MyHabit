@@ -1,0 +1,25 @@
+<div class="p-[24px]">
+  <h1 class="text-[32px] text-white font-bold mb-[24px]">目標の編集</h1>
+
+  <%= form_with model: @user, url: update_goals_profile_path, method: :patch, local: true do |f| %>
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |m| %><li><%= m %></li><% end %>
+    <% end %>
+
+    <div class="text-[#656565] box-border border-1 border-white bg-white/30 rounded-[20px] mb-[24px] p-[24px]">
+      <div class="mb-[8px]"><%= f.label :goal_weight, "目標体重" %></div>
+      <%= f.number_field :goal_weight, step: "0.1" %>
+    </div>
+
+    <div class="text-[#656565] box-border border-1 border-white bg-white/30 rounded-[20px] mb-[48px] p-[24px]">
+      <div class="mb-[8px]"><%= f.label :goal_body_fat_percentage, "目標体脂肪率" %></div>
+      <%= f.number_field :goal_body_fat_percentage, step: "0.1" %>
+    </div>
+
+    <div class="box-content bg-[#2EB7AC] py-[12px] px-[16px] text-center text-white rounded-[20px]">
+      <%= f.submit "保存" %>
+    </div>
+  <% end %>
+
+  <p class="text-white mt-[24px]"><%= link_to "プロフィール画面に戻る", profile_path %></p>
+</div>

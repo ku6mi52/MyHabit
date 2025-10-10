@@ -1,16 +1,29 @@
-<%= content_for :title, "プロフィール" %>
+<div class="p-[24px]">
+  <h1 class="text-[32px] font-bold text-white mb-[16px]">プロフィール</h1>
 
-<h1>ようこそ！<%= current_user.username %>さん</h1>
-<h2>登録情報の編集</h2>
-<ul class="list">
-	<li>
-		<%= link_to edit_user_registration_path do %>
-			メールアドレス ／ パスワードの変更
-		<% end %>
-	</li>
-	<li>
-		<%= link_to edit_goals_profile_path do %>
-			目標体重・目標体脂肪率
-		<% end %>
-	</li>
-</ul>
+  <div class="box-content bg-[linear-gradient(90deg,_#68B2A0A6_0%,_#CDE0C9_67%)] rounded-[20px] p-[24px]">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="39.5" stroke="#2EB7AC"/>
+        <path d="M39.4989 41.9361C46.6592 41.9361 52.4628 36.1326 52.4628 28.9732C52.4628 21.8147 46.6592 16.0103 39.4989 16.0103C32.3396 16.0103 26.5369 21.8146 26.5369 28.9732C26.5369 36.1326 32.3396 41.9361 39.4989 41.9361Z" fill="#2EB7AC"/>
+        <path d="M62.2425 55.9812C59.4957 47.5372 49.4148 42.9385 39.5 42.9385C29.5841 42.9385 19.5041 47.5373 16.7573 55.9813C16.3162 57.3344 16.0755 58.679 16 59.9897H63C62.9234 58.6789 62.6836 57.3344 62.2425 55.9812Z" fill="#2EB7AC"/>
+      </svg>
+
+    <h2 class="text-[#656565] flex flex-col font-bold font-[Montserrat] text-[24px] mb-[16px]"><%= current_user.username %></h2>
+    <p class="text-[#656565]">開始時体重<%= current_user.start_weight %></p>
+    <p class="text-[#656565]">開始時体脂肪率<%= current_user.start_body_fat_percentage %></p>
+  </div>
+
+  <h2 class="text-[24px] font-bold text-white mt-[32px] mb-[16px]">登録情報の編集</h2>
+  <ul class="box-border border-1 border-white bg-white/30 rounded-[20px] p-[24px] text-[#656565]">
+    <li class="border-b-1 border-[#A2A2A2] pb-[16px]">
+      <%= link_to edit_user_registration_path do %>
+        メールアドレス ／ パスワードの変更
+      <% end %>
+    </li>
+    <li class="mt-[16px] text-[#656565]">
+      <%= link_to edit_goals_profile_path do %>
+        目標体重・目標体脂肪率
+      <% end %>
+    </li>
+  </ul>
+</div>

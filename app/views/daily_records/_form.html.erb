@@ -1,33 +1,40 @@
-<%= form_with model: daily_record, local: true do |f| %>
-  <% if f.object.errors.any? %>
-    <ul style="color:#c00">
-      <% f.object.errors.full_messages.each do |m| %><li><%= m %></li><% end %>
-    </ul>
-  <% end %>
+<div class="p-[24px]">
+  <%= form_with model: @daily_record, local: true do |f| %>
 
-  <div class="field">
-    <%= f.label :recorded_on, "日付" %><br>
-    <%= f.date_select :recorded_on,
-          start_year: Date.current.year - 5,
-          end_year:   Date.current.year + 1,
-          order: [:year, :month, :day],
-          use_month_numbers: true,
-          date_separator: " ",
-          prompt: { year: "年", month: "月", day: "日" } %>
-  </div>
+    <div class="text-white font-bold mt-[48px] mb-[16px]">
+      <%= f.date_select :recorded_on,
+        start_year: Date.current.year - 5,
+        end_year:   Date.current.year + 1,
+        order: [:year, :month, :day],
+        use_month_numbers: true,
+        date_separator: " ",
+        prompt: { year: "年", month: "月", day: "日" } %>
+    </div>
 
-  <div class="field">
-    <%= f.label :weight, "体重（kg）" %><br>
-    <%= f.number_field :weight, step: "0.1", min: 0 %>
-  </div>
+    <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px]">
+      <div class="mx-[20px] text-[#656565]">
+        <%= f.label :weight, "体重" %>
+        <div class="box-content h-[45px] bg-white rounded-[20px] mt-[0px]"><%= f.number_field :weight, step: "0.1" %></div>
+      </div>
 
-  <div class="field">
-    <%= f.label :body_fat_percentage, "体脂肪率（%）" %><br>
-    <%= f.number_field :body_fat_percentage, step: "0.1", min: 0 %>
-  </div>
+      <div class="mt-[24px] mx-[20px] text-[#656565]">
+        <%= f.label :body_fat_percentage, "体脂肪率" %>
+        <div class="box-content h-[45px] bg-white rounded-[20px]"><%= f.number_field :body_fat_percentage, step: "0.1" %></div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit (defined?(submit_text) ? submit_text : "保存") %>
-  </div>
-<% end %>
+      <div class="text-[#656565] mx-[20px] mt-[24px]">
+        <%= f.label :motivation, "モチベーション" %><br>
+        <%= f.hidden_field :recorded_on, value: @today %>
+        <%= f.radio_button :motivation, "😖" %>
+        <%= f.label :motivation, "😖" %>
+        <%= f.radio_button :motivation, "😑" %>
+        <%= f.label :motivation, "😑" %>
+        <%= f.radio_button :motivation, "🙂" %>
+        <%= f.label :motivation, "🙂" %>
+        <%= f.radio_button :motivation, "😆" %>
+        <%= f.label :motivation, "😆" %>
+      </div>
 
+      <div class="box-content h-[45px] rounded-[20px] bg-[#2EB7AC] text-white font-regular mt-[42px] mx-[20px] leading-[45px] text-center"><%= f.submit "保存" %></div>
+    <% end %>
+    </div>

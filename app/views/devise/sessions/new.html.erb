@@ -1,20 +1,29 @@
-<h1>ログイン</h1>
+<div class="p-[48px]">
+  <div class="box-content border-1 border-white bg-white/30 pt-[42px] pb-[24px] px-[24px] rounded-[20px]">
+    <svg class="mx-auto mb-[16px]" width="58" height="57" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="29" cy="28.1707" r="28.1707" fill="#2EB7AC" fill-opacity="0.75"/>
+      <path d="M28.6472 11.7755C33.4136 11.7756 37.2768 15.6393 37.2771 20.4044C37.2771 25.1703 33.4138 29.0342 28.6472 29.0343C23.8814 29.0343 20.0183 25.1705 20.0183 20.4044C20.0186 15.6391 23.8816 11.7755 28.6472 11.7755Z" stroke="white"/>
+      <path d="M28.6483 30.7403C35.5353 30.7404 42.3528 33.9352 44.1893 39.5801V39.5811C44.427 40.3105 44.577 41.036 44.6541 41.7491H12.6414C12.7063 41.1474 12.8226 40.5365 13.0008 39.9219L13.1063 39.5811C14.9426 33.9358 21.7602 30.7403 28.6483 30.7403Z" stroke="white"/>
+    </svg>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "E-mail" %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <h1 class="text-white font-bold font-[Montserrat] text-[24px] text-center">LOGIN</h1>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="text-center text-[#656565] box-content bg-white">
+        <%= f.label :email, "E-mail" %><br>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="text-center text-[#656565] box-content bg-white mt-[24px]">
+        <%= f.label :password, "Password" %><br>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <div class="text-white box-content bg-[#2EB7AC] pt-[12px] px-[16px] text-center rounded-[20px] h-[32px] mt-[32px]">
+        <%= f.submit "ログイン" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password, "Password" %><br>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログインする" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
+</div>

@@ -9,12 +9,12 @@
     <h1 class="text-white font-bold font-[Montserrat] text-[24px] text-center">LOGIN</h1>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="text-center">
+      <div class="text-center text-[#656565] box-content bg-white">
         <%= f.label :email, "E-mail" %><br>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
 
-      <div class="text-center">
+      <div class="text-center text-[#656565] box-content bg-white mt-[24px]">
         <%= f.label :password, "Password" %><br>
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>

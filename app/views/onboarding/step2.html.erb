@@ -1,18 +1,20 @@
-<h1>目標登録</h1>
+<div class="p-[24px]">
+  <h1 class="text-center text-white font-bold text-[32px] mb-[32px]">目標登録</h1>
 
-<%= form_with model: current_user, url: step2_onboarding_path, method: :patch, local: true do |f| %>
+  <%= form_with model: current_user, url: step2_onboarding_path, method: :patch, local: true do |f| %>
 
-  <div class="field">
-    <%= f.label :goal_weight, "目標の体重 (kg)" %><br>
-    <%= f.number_field :goal_weight, step: "0.1", min: 0, required: true %>
-  </div>
+    <div class="text-white mb-[24px]">
+      <%= f.label :goal_weight, "目標の体重 (kg)" %><br>
+      <%= f.number_field :goal_weight, step: "0.1", min: 0, required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :goal_body_fat_percentage, "目標の体脂肪率 (%)" %><br>
-    <%= f.number_field :goal_body_fat_percentage, step: "0.1", min: 0 %>
-  </div>
+    <div class="text-white mb-[32px]">
+      <%= f.label :goal_body_fat_percentage, "目標の体脂肪率 (%)" %><br>
+      <%= f.number_field :goal_body_fat_percentage, step: "0.1", min: 0 %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "完了" %>
-  </div>
-<% end %>
+    <div class="box-content bg-[#2EB7AC] py-[12px] px-[16px] text-center text-white">
+      <%= f.submit "登録する" %>
+    </div>
+  <% end %>
+</div>

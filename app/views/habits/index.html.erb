@@ -1,11 +1,11 @@
 <div class="px-[24px]">
   <h1 class="text-[32px] font-bold text-white pt-[24px] mb-[32px]">習慣一覧</h1>
 
-  <table>
+  <table class="w-full table-fixed border-collapse"> 
     <tbody>
       <% @habits.each do |habit| %>
         <tr>
-          <td class="p-0">
+          <td class="p-0 w-full">
             <div class="box-border border-1 border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px]">
               <div class="inline mr-[24px]"><%= habit.name %></div>
               <div class="inline rounded-[20px] box-content bg-[#2EB7AC] text-white py-[12px] px-[16px]"><%= link_to "編集", edit_habit_path(habit) %></div>

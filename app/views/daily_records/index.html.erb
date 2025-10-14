@@ -27,21 +27,21 @@
                   <div class="inline-block box-content bg-[#2EB7AC] text-white px-[16px] py-[12px] rounded-[20px]"><%= form.submit "更新" %></div>
                 <% end %>
                 <div class="inline-block"><% if daily_record.weight.present? %>
-                  <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { weight: nil } }, data: { turbo_confirm: "体重を削除しますか？" } %>
+                  <div class="box-content bg-[#656565] text-white rounded-[20px] px-[16px] py-[12px]"><%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { weight: nil } }, data: { turbo_confirm: "体重を削除しますか？" } %></div>
                 <% end %></div>
               <% else %>
-                <div class="box-content bg-[#2EB7AC] text-white rounded-[20px] px-[85px] py-[12px]"><%= link_to "新規記録作成", new_daily_record_path %></div> 
+                <div class="box-content bg-[#2EB7AC] text-white rounded-[20px] px-[85px] py-[12px] w-full text-center"><%= link_to "新規記録作成", new_daily_record_path %></div> 
               <% end %>
             </td>
 
-            <td class="inline-block m-[24px]">
+            <td class="m-[24px]">
               <% if daily_record %>
                 <%= form_with model: daily_record, url: daily_record_path(daily_record), method: :patch, local: true do |form| %>
                   <%= form.number_field :body_fat_percentage %><p class="inline-block">%</p>
-                  <div class="iniline-block box-content bg-[#2EB7AC] text-white px-[16px] py-[12px] rounded-[20px]"><%= form.submit "更新" %></div>
+                  <div class="inline-block box-content bg-[#2EB7AC] text-white px-[16px] py-[12px] rounded-[20px] text-center"><%= form.submit "更新" %></div>
                 <% end %>
                 <div class="inline-block"><% if daily_record.body_fat_percentage.present? %>
-                  <%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { body_fat_percentage: nil } }, data: { turbo_confirm: "体脂肪率を削除しますか？" } %>
+                  <div class="inline-block text-white rounded-[20px] text-center py-[12px] px-[16px] bg-[#656565] box-content"><%= button_to "削除", daily_record_path(daily_record), method: :patch, params: { daily_record: { body_fat_percentage: nil } }, data: { turbo_confirm: "体脂肪率を削除しますか？" } %></div>
                 <% end %></div>
               <% end %>
             </td>
@@ -60,7 +60,7 @@
                   <%= form.label :motivation, "🙂" %>
                   <%= form.radio_button :motivation, "😆" %>
                   <%= form.label :motivation, "😆" %>
-                  <%= form.submit "保存" %>
+                  <div class="inline-block text-white rounded-[20px] text-center py-[12px] px-[16px] bg-[#2EB7AC] box-content"><%= form.submit "保存" %></div>
                 <% end %>
               <% end %>
             </td>

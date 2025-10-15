@@ -1,15 +1,15 @@
 <div class="px-[24px]">
   <h1 class="text-[32px] font-bold text-white pt-[24px] mb-[32px]">習慣一覧</h1>
 
-  <table>
+  <table class="w-full table-fixed border-collapse"> 
     <tbody>
       <% @habits.each do |habit| %>
         <tr>
-          <td class="p-0">
-            <div class="box-border border-1 border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px]">
-              <div class="inline mr-[24px]"><%= habit.name %></div>
-              <div class="inline rounded-[20px] box-content bg-[#2EB7AC] text-white py-[12px] px-[16px]"><%= link_to "編集", edit_habit_path(habit) %></div>
-              <div class="inline-block ml-[24px]"><%= button_to "削除", habit_path(habit), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></div>
+          <td class="p-0 w-full">
+            <div class="box-border border-1 border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px] flex">
+              <div class="min-w-full mr-[32px]"><%= habit.name %></div>
+              <div class="ml-auto"><%= link_to "編集", edit_habit_path(habit), class: "rounded-[20px] bg-[#2EB7AC] text-white py-[12px] px-[16px]" %></div>
+              <%= button_to "削除", habit_path(habit), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } }, class: "ml-[24px]" %>
             </div>
           </td>
         </tr>

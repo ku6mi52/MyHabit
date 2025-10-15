@@ -6,15 +6,15 @@
       <path d="M28.6483 30.7403C35.5353 30.7404 42.3528 33.9352 44.1893 39.5801V39.5811C44.427 40.3105 44.577 41.036 44.6541 41.7491H12.6414C12.7063 41.1474 12.8226 40.5365 13.0008 39.9219L13.1063 39.5811C14.9426 33.9358 21.7602 30.7403 28.6483 30.7403Z" stroke="white"/>
     </svg>
 
-    <h1 class="text-white font-bold font-[Montserrat] text-[24px] text-center">LOGIN</h1>
+    <h1 class="text-white font-bold font-[Montserrat] text-[32px] text-center mb-[24px]">LOGIN</h1>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="text-center text-[#656565] box-content bg-white">
+      <div class="text-center text-[#656565] box-content bg-white rounded-[20px]">
         <%= f.label :email, "E-mail" %><br>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
 
-      <div class="text-center text-[#656565] box-content bg-white mt-[24px]">
+      <div class="text-center text-[#656565] box-content bg-white mt-[24px] rounded-[20px]">
         <%= f.label :password, "Password" %><br>
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>

@@ -6,19 +6,19 @@
     <section class="card">
       <h2 class="text-[24px] text-white font-bold mt-[48px] mb-[16px]">今日の記録</h2>
 
-      <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
+      <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px] px-[24px] shadow-xl"><%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
         <%= f.hidden_field :recorded_on, value: @today %>
-        <div class="mx-[20px] text-[#656565] focus:outline-none">
+        <div class="text-[#656565] focus:outline-none">
           <%= f.label :weight, "体重" %>
           <div class="box-content h-[45px] bg-white rounded-[20px] mt-[0px] focus:outline-none focus:border-b-2 focus:border-indigo-500"><%= f.number_field :weight, step: "0.1" %></div>
         </div>
 
-        <div class="mt-[24px] mx-[20px] text-[#656565]">
+        <div class="mt-[24px] text-[#656565]">
           <%= f.label :body_fat_percentage, "体脂肪率" %>
           <div class="box-content h-[45px] bg-white rounded-[20px]"><%= f.number_field :body_fat_percentage, step: "0.1" %></div>
         </div>
 
-        <div class="text-[#656565] mx-[20px] mt-[24px]">
+        <div class="text-[#656565] mt-[24px]">
           <%= f.label :motivation, "モチベーション" %><br>
           <%= f.hidden_field :recorded_on, value: @today %>
           <%= f.radio_button :motivation, "😖" %>
@@ -31,32 +31,32 @@
           <%= f.label :motivation, "😆" %>
         </div>
 
-        <div class="box-content h-[45px] rounded-[20px] bg-[#2EB7AC] text-white font-regular mt-[42px] mx-[20px] leading-[45px] text-center"><%= f.submit "保存" %></div></div>
-    <% end %>
+        <%= f.submit "保存", class: "flex w-full items-center justify-center rounded-[20px] bg-[#2EB7AC] text-white font-regular mt-[42px] h-[45px] py-[12px] px-[16px]" %>
+      <% end %>
     </section>
   <% else %>
-    <% if @goal_diff_kg %>
-      <section class="card">
-        目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
-      </section>
-    <% end %>
+      <% if @goal_diff_kg %>
+        <div class="mt-[24px] text-[#2EB7AC] text-[32px] font-[Montserrat]">
+          目標まで<strong><%= format('%+.1f', @goal_diff_kg) %>kg</strong>
+        </div>
   <% end %>
-  <section class="card">
-    <h2 class="text-[24px] text-white font-bold mt-[48px] mb-[16px]">習慣チェック</h2>
+<% end %>
+<section class="card">
+  <h2 class="text-[24px] text-white font-bold mt-[48px] mb-[16px]">習慣チェック</h2>
 
-    <div class="box-border border-white bg-white/30 rounded-[20px] py-[32px]"><%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
-      <%= form.hidden_field :recorded_on, value: @today %>
-      <ul>
-        <% @habit_checks.each do |habit_check| %>
-          <li class="text-[#2E2E2E] border-b-1 mx-[20px] mb-[18px]">
-            <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
-              <%= f.check_box :done %>
-              <%= f.label :done, habit_check.habit.name %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-      <div class="box-content h-[45px] rounded-[20px] bg-[#2EB7AC] text-white font-regular m-auto mt-[42px] mx-[20px] leading-[45px] text-center"><%= form.submit "保存" %></div>
-    <% end %></div>
-  </section>
-</div>
+  <div class="box-border border-1 border-white bg-white/30 rounded-[20px] p-[24px] shadow-[0_14px_40px_rgba(0,0,0,.18),_0_2px_0_rgba(255,255,255,.25)_inset]"><%= form_with url: today_tasks_update_habit_checks_path, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :recorded_on, value: @today %>
+    <ul>
+      <% @habit_checks.each do |habit_check| %>
+        <li class="text-[#2E2E2E] border-b-1 mx-[20px] mb-[18px]">
+          <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
+            <%= f.check_box :done %>
+            <%= f.label :done, habit_check.habit.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= form.submit "保存", class: "rounded-[20px] bg-[#2EB7AC] text-ehite text-center py-[12px] px-[16px] w-full mt-[32px]" %>
+  <% end %></div>
+</section>
+      </div>

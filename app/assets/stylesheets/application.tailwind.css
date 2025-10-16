@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* ここでテーマ変数や色などを宣言（必要なときだけ） */
 @theme {

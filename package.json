@@ -12,6 +12,6 @@
   "scripts": {
     "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build": "yarn build:js",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   }
 }

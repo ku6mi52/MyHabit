@@ -16,5 +16,3 @@
   .font-ja { font-family: var(--font-sans-ja); }
 }
 
-/* DaisyUI v5 などのプラグインを使うなら @plugin を書くだけ */
-@plugin "daisyui";

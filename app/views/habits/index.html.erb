@@ -6,7 +6,7 @@
       <% @habits.each do |habit| %>
         <tr>
           <td class="p-0 w-full">
-            <div class="box-border border-1 border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px] flex">
+            <div class="border border-white bg-white/30 mb-[24px] py-[24px] px-[16px] rounded-[20px] flex shadow-xl">
               <div class="min-w-0 mr-[32px]"><%= habit.name %></div>
               <div class="ml-auto"><%= link_to "編集", edit_habit_path(habit), class: "rounded-[20px] bg-[#2EB7AC] text-white py-[12px] px-[16px]" %></div>
               <%= button_to habit_path(habit), method: :delete, data: { turbo: false }, form: { data: { turbo_confirm: "削除しますか？" } }, class: "ml-[24px] text-[#A2A2A2] inline-flex" do %>

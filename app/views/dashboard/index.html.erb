@@ -1,7 +1,7 @@
 <div class="w-full px-8">
   <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px] pt-[24px]"><%= Date.today.strftime("%Y年%m月%d日") %></h1>
   <p class="font-[Montserrat] text-white font-semibold text-xl">Hi, <%= current_user.username %>！</p>
-  <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+  <div style="w-full"><canvas id="acquisitions"></canvas></div>
 
   <% if @daily_record_form %>
     <section class="card">
@@ -9,30 +9,30 @@
 
       <div class="box-border border-[1px] border-white bg-white/30 rounded-[20px] py-[32px] px-[24px] shadow-xl"><%= form_with model: (@daily_record || current_user.daily_records.build(recorded_on: @today)), local: true do |f| %>
         <%= f.hidden_field :recorded_on, value: @today %>
-        <div class="text-[#656565] focus:outline-none">
+        <div class="text-[#656565]">
           <%= f.label :weight, "体重" %>
-          <div class="box-content h-[45px] bg-white rounded-[20px] mt-[0px] focus:outline-none focus:border-b-2 focus:border-indigo-500"><%= f.number_field :weight, step: "0.1" %></div>
+          <%= f.number_field :weight, step: "0.1", min: 0, class: "input input-accent w-full" %>
         </div>
 
         <div class="mt-[24px] text-[#656565]">
           <%= f.label :body_fat_percentage, "体脂肪率" %>
-          <div class="box-content h-[45px] bg-white rounded-[20px]"><%= f.number_field :body_fat_percentage, step: "0.1" %></div>
+          <%= f.number_field :body_fat_percentage, step: "0.1", min: 0, class: "input input-accent w-full" %>
         </div>
 
         <div class="text-[#656565] mt-[24px]">
           <%= f.label :motivation, "モチベーション" %><br>
           <%= f.hidden_field :recorded_on, value: @today %>
-          <%= f.radio_button :motivation, "😖" %>
+          <%= f.radio_button :motivation, "😖", class: "radio radio-accent mt-[8px]" %>
           <%= f.label :motivation, "😖" %>
-          <%= f.radio_button :motivation, "😑" %>
+          <%= f.radio_button :motivation, "😑", class: "radio radio-accent mt-[8px]" %>
           <%= f.label :motivation, "😑" %>
-          <%= f.radio_button :motivation, "🙂" %>
+          <%= f.radio_button :motivation, "🙂", class: "radio radio-accent mt-[8px]" %>
           <%= f.label :motivation, "🙂" %>
-          <%= f.radio_button :motivation, "😆" %>
+          <%= f.radio_button :motivation, "😆", class: "radio radio-accent mt-[8px]" %>
           <%= f.label :motivation, "😆" %>
         </div>
 
-        <%= f.submit "保存", class: "flex w-full items-center justify-center rounded-[20px] bg-[#2EB7AC] text-white font-regular mt-[42px] h-[45px] py-[12px] px-[16px]" %>
+        <%= f.submit "保存", class: "rounded-[20px] bg-[#2EB7AC] text-white text-center mt-[42px] py-[12px] px-[24px]" %>
       <% end %>
     </section>
   <% else %>
@@ -51,13 +51,13 @@
         <% @habit_checks.each do |habit_check| %>
           <li class="text-[#2E2E2E] border-b-1 mx-[20px] mb-[18px]">
             <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
-              <%= f.check_box :done %>
+              <%= f.check_box :done, class: "checkbox checkbox-accent" %>
               <%= f.label :done, habit_check.habit.name %>
             <% end %>
           </li>
         <% end %>
       </ul>
-      <%= form.submit "保存", class: "rounded-[20px] bg-[#2EB7AC] text-ehite text-center py-[12px] px-[16px] w-full mt-[32px]" %>
+      <%= form.submit "保存", class: "rounded-[20px] bg-[#2EB7AC] text-white text-center py-[12px] px-[24px] mt-[32px]" %>
     <% end %></div>
   </section>
       </div>

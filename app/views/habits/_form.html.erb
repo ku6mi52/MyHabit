@@ -5,9 +5,10 @@
     </ul>
   <% end %>
 
-  <div class="box-border border-1 border-white bg-white/30 p-[24px] my-[32px] mx-[24px] rounded-[20px]">
+  <div class="border border-white bg-white/30 p-[24px] my-[32px] mx-[24px] rounded-[20px] shadow-xl">
     <div class="text-[#656565] text-[24px]"><%= f.label :name, "項目名" %></div>
-    <%= f.text_field :name, placeholder: "ウォーキング1時間など", class: "bg-white rounded-[20px] h-[45px] w-full flex text-[#656565] mt-[24px] px-[16px]" %>
-    <%= f.submit "保存", class: "block w-full bg-[#2EB7AC] text-white rounded-[20px] text-center mt-[32px] flex py-[12px] px-[16px] " %>
+    <%= f.text_field :name, placeholder: "ウォーキング1時間など", class: "input input-accent w-full mt-[16px]" %>
+    <br>
+    <%= f.submit "保存", class: "bg-[#2EB7AC] text-white rounded-[20px] text-center mt-[32px] py-[12px] px-[16px] " %>
   </div>
 <% end %>

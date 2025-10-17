@@ -1,7 +1,7 @@
 <div class="p-[24px]">
   <h1 class="text-[32px] font-bold text-white mb-[16px]">プロフィール</h1>
 
-  <div class="bg-white/30 border border-white rounded-[20px] p-[24px] shadow-2xl shadow-black/20"> 
+  <div class="bg-white/30 border border-white rounded-[20px] p-[24px] shadow-xl"> 
     <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="40" cy="40" r="39.5" stroke="#656565"/>
         <path d="M39.4989 41.9361C46.6592 41.9361 52.4628 36.1326 52.4628 28.9732C52.4628 21.8147 46.6592 16.0103 39.4989 16.0103C32.3396 16.0103 26.5369 21.8146 26.5369 28.9732C26.5369 36.1326 32.3396 41.9361 39.4989 41.9361Z" fill="#656565"/>
@@ -9,15 +9,15 @@
       </svg>
 
     <h2 class="text-[#656565] flex flex-col font-bold font-[Montserrat] text-[24px] mb-[16px]"><%= current_user.username %></h2>
-    <p class="text-[#656565]">開始時体重<%= current_user.start_weight %></p>
-    <p class="text-[#656565]">開始時体脂肪率<%= current_user.start_body_fat_percentage %></p>
+    <p class="text-[#656565]">開始時体重<%= current_user.start_weight %>kg</p>
+    <p class="text-[#656565]">開始時体脂肪率<%= current_user.start_body_fat_percentage %>%</p>
   </div>
 
   <h2 class="text-[24px] font-bold text-white mt-[32px] mb-[16px]">登録情報の編集</h2>
-  <ul class="box-border border-1 border-white bg-white/30 rounded-[20px] p-[24px] text-[#656565]">
-    <li class="border-b-1 border-[#656565] pb-[16px]">
+  <ul class="border border-white bg-white/30 rounded-[20px] p-[24px] text-[#656565] shadow-xl">
+    <li class="border-b border-[#656565] pb-[16px]">
       <%= link_to edit_user_registration_path do %>
-        メールアドレス ／ パスワードの変更
+        メールアドレス・パスワード
       <% end %>
     </li>
     <li class="mt-[16px] text-[#656565]">

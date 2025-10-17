@@ -6,20 +6,16 @@
       <% @user.errors.full_messages.each do |m| %><li><%= m %></li><% end %>
     <% end %>
 
-    <div class="text-[#656565] box-border border-1 border-white bg-white/30 rounded-[20px] mb-[24px] p-[24px]">
+    <div class="text-[#656565] border border-white bg-white/30 rounded-[20px] mb-[24px] p-[24px] shadow-xl">
       <div class="mb-[8px]"><%= f.label :goal_weight, "目標体重" %></div>
-      <%= f.number_field :goal_weight, step: "0.1" %>
-    </div>
+      <%= f.number_field :goal_weight, step: "0.1", min: 0, class: "input input-accent w-full" %>
 
-    <div class="text-[#656565] box-border border-1 border-white bg-white/30 rounded-[20px] mb-[48px] p-[24px]">
-      <div class="mb-[8px]"><%= f.label :goal_body_fat_percentage, "目標体脂肪率" %></div>
-      <%= f.number_field :goal_body_fat_percentage, step: "0.1" %>
-    </div>
-
-    <div class="box-content bg-[#2EB7AC] py-[12px] px-[16px] text-center text-white rounded-[20px]">
-      <%= f.submit "保存" %>
+      <div class="mt-[24px] mb-[8px]"><%= f.label :goal_body_fat_percentage, "目標体脂肪率" %></div>
+      <%= f.number_field :goal_body_fat_percentage, step: "0.1", min: 0, class: "input input-accent w-full" %>
+      <br>
+      <%= f.submit "保存", class: "mt-[32px] bg-[#2EB7AC] py-[12px] px-[16px] text-center text-white rounded-[20px]" %>
     </div>
   <% end %>
 
-  <p class="text-white mt-[24px]"><%= link_to "プロフィール画面に戻る", profile_path %></p>
+  <p class="text-[#2EB7AC] mt-[24px] link"><%= link_to "プロフィール画面に戻る", profile_path %></p>
 </div>

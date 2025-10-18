@@ -22,13 +22,13 @@
         <div class="text-[#656565] mt-[24px]">
           <%= f.label :motivation, "モチベーション" %><br>
           <%= f.hidden_field :recorded_on, value: @today %>
-          <%= f.radio_button :motivation, "😖", class: "radio radio-accent mt-[8px]" %>
+          <%= f.radio_button :motivation, "😖", class: "radio checked:bg-blue-500" %>
           <%= f.label :motivation, "😖" %>
-          <%= f.radio_button :motivation, "😑", class: "radio radio-accent mt-[8px]" %>
+          <%= f.radio_button :motivation, "😑", class: "radio checked:bg-blue-500" %>
           <%= f.label :motivation, "😑" %>
-          <%= f.radio_button :motivation, "🙂", class: "radio radio-accent mt-[8px]" %>
+          <%= f.radio_button :motivation, "🙂", class: "radio checked:bg-blue-500" %>
           <%= f.label :motivation, "🙂" %>
-          <%= f.radio_button :motivation, "😆", class: "radio radio-accent mt-[8px]" %>
+          <%= f.radio_button :motivation, "😆", class: "radio checked:bg-blue-500" %>
           <%= f.label :motivation, "😆" %>
         </div>
 

@@ -1,30 +1,31 @@
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto';
+(() => {
+  const el = document.getElementById('acquisitions');
+  if (!el) return;
 
-(async function() {
-  const data = [
-    { year: 2010, count: 10 },
-    { year: 2011, count: 20 },
-    { year: 2012, count: 15 },
-    { year: 2013, count: 25 },
-    { year: 2014, count: 22 },
-    { year: 2015, count: 30 },
-    { year: 2016, count: 28 },
-  ];
+  const { labels = [], weights = [], rates = [] } =
+  JSON.parse(el.dataset.chart || "{}");
 
-  new Chart(
-    document.getElementById('acquisitions'),
-    {
-      type: 'bar',
-      data: {
-        labels: data.map(row => row.year),
-        datasets: [
-          {
-            label: 'Acquisitions by year',
-            data: data.map(row => row.count)
+  new Chart(el, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type: 'bar',  label: '習慣達成率', data: rates,  order: 1,
+          backgroundColor: 'rgb(233, 167, 82)', borderColor: 'rgb(233, 167, 82)' },
+        { type: 'line', label: '体重',       data: weights, order: 0,
+          backgroundColor:  'rgb(212, 71, 32)', borderColor: 'rgb(212, 71, 32)', pointRadius: 3, tension: 0.3, fill: false, spanGaps: true }
+      ]
+    },
+    options: { 
+      scales: { 
+        x: { 
+          title: {
+            display: true,
+            text: '（日付）'
           }
-        ]
-      }
-    }
-  );
+        },
+        y: { min: 0, max: 100, ticks: { stepSize: 10 } } } }
+  });
 })();
- 
+

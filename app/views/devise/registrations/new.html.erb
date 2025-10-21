@@ -1,55 +1,24 @@
 <div class="p-[24px]">
-  <div class="box-content bg-white/30 border-white border-1 rounded-[20px] p-[24px] m-[66px]">
+  <div class="box-content bg-white/30 border-white border rounded-[20px] p-[24px] ">
     <h1 class="text-white text-center text-[32px] mb-[32px] font-bold">新規登録</h1>
 
     <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-        <%= f.label :username, "ユーザー名" %><br>
-        <%= f.text_field :username, class: "input input-bordered input-info w-full max-w-xs" %>
-
-        <%= f.label :email, "E-mail" %><br>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-center mt-[24px] box-content bg-white text-[#656565] rounded-[20px]" %>
-
-        <%= f.label :password, "Password（8文字以上）" %><br>
-        <%= f.password_field :password, autocomplete: "new-password", class: "text-center mt-[24px] box-content bg-white text-[#656565] rounded-[20px]" %>
-
-        <%= f.label :password_confirmation, "Confirm password" %><br>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text-center mt-[24px] box-content bg-white text-[#656565] rounded-[20px]" %>
-
-      <div class="btn">
-        <%= f.submit "登録する" %>
-      </div>
+      <%= f.label :username, "ユーザー名" %><br>
+      <%= f.text_field :username, class: "input input-accent w-full mb-[24px] rounded-[20px]" %>
+      <br>
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full mb-[24px] input input-accent text-[#656565] rounded-[20px]" %>
+      <br>
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "w-full mb-[24px] input input-accent text-[#656565] rounded-[20px]" %>
+      <br>
+      <%= f.label :password_confirmation, "パスワード（確認用）" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full mb-[24px] input input-accent text-[#656565] rounded-[20px]" %>
+      <br>
+        <%= f.submit "登録", class: "py-[12px] px-[16px] text-center rounded-[20px] bg-[#2EB7AC] text-white hover:bg-teal-600 box-content w-[66px]" %>
     <% end %>
-
-    <button class="btn btn-primary">Button</button>
-    <div class="collapse collapse-plus bg-base-200">
-  <input type="radio" name="my-accordion-3" checked="checked" /> 
-  <div class="collapse-title text-xl font-medium">
-    Click to open this one and close others
-  </div>
-  <div class="collapse-content"> 
-    <p>hello</p>
-  </div>
-</div>
-<div class="collapse collapse-plus bg-base-200">
-  <input type="radio" name="my-accordion-3" /> 
-  <div class="collapse-title text-xl font-medium">
-    Click to open this one and close others
-  </div>
-  <div class="collapse-content"> 
-    <p>hello</p>
-  </div>
-</div>
-<div class="collapse collapse-plus bg-base-200">
-  <input type="radio" name="my-accordion-3" /> 
-  <div class="collapse-title text-xl font-medium">
-    Click to open this one and close others
-  </div>
-  <div class="collapse-content"> 
-    <p>hello</p>
-  </div>
-</div>
     <%= render "devise/shared/links" %>	
   </div>
 </div>

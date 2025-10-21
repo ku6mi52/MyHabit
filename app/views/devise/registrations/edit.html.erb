@@ -4,7 +4,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="text-white  border border-white bg-white/30 rounded-[20px] p-[24px] shadow-xl">
+    <div class="text-[#656565] border border-white bg-white/30 rounded-[20px] p-[24px] shadow-xl">
       <%= f.label :email, "メールアドレス" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-accent w-full" %>
       <br>
@@ -12,7 +12,7 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
       <br>
-      <div class="text-white">
+      <div class="text-[#656565]">
         <%= f.label :password, "パスワード（変更しなくてよければ、そのまま更新ボタンを押してください。）" %> 
         <%= f.password_field :password, autocomplete: "new-password", class: "input input-accent w-full" %>
         <% if @minimum_password_length %>
@@ -20,12 +20,10 @@
         <% end %>
       </div>
       <br>
-      <div class="field">
-        <%= f.label :password_confirmation, "パスワード（確認）" %><br />
+      <%= f.label :password_confirmation, "パスワード（確認)", class: "text-[#656565]" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-accent w-full" %>
-      </div>
       <br>
-      <%= f.label :current_password, "現在のパスワード" %><br />
+      <%= f.label :current_password, "現在のパスワード", class: "text-[#656565]" %><br />
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-accent w-full" %>
       <br>
       <%= f.submit "更新", class: "box-content bg-[#2EB7AC] text-white rounded-[20px] mt-[32px] text-center py-[12px] px-[16px]" %>

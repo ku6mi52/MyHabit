@@ -1,20 +1,20 @@
 <div class="p-[24px]">
-  <h1 class="text-center text-white font-bold text-[32px] mb-[32px]">現状登録</h1>
+  <div class="border-white bg-white/30 rounded-[20px] p-[24px]">
+    <h1 class="text-center text-white font-bold text-[32px] mb-[32px]">現状登録</h1>
 
-  <%= form_with model: current_user, url: step1_onboarding_path, method: :patch, local: true do |f| %>
+    <%= form_with model: current_user, url: step1_onboarding_path, method: :patch, local: true do |f| %>
 
-    <div class="mb-[24px]">
-      <%= f.label :start_weight, "現在の体重 (kg)" %><br>
-      <%= f.number_field :start_weight, step: "0.1", min: 0 %>
-    </div>
+      <div class="mb-[24px]">
+        <%= f.label :start_weight, "現在の体重 (kg)" %><br>
+        <%= f.number_field :start_weight, step: "0.1", min: 0, class: "input input-accent rounded-[20px] w-full" %>
+      </div>
 
-    <div class="mb-[32px]">
-      <%= f.label :start_body_fat_percentage, "現在の体脂肪率 (%)" %><br>
-      <%= f.number_field :start_body_fat_percentage, step: "0.1", min: 0, required: true %>
-    </div>
+      <div class="mb-[32px]">
+        <%= f.label :start_body_fat_percentage, "現在の体脂肪率 (%)" %><br>
+        <%= f.number_field :start_body_fat_percentage, step: "0.1", min: 0, required: true, class: "input input-accent rounded-[20px] w-full" %>
+      </div>
 
-    <div class="text-center text-white box-content py-[12px] px-[16px] rounded-[20px] bg-[#2EB7AC]">
-      <%= f.submit "登録する" %>
-    </div>
-  <% end %>
+      <%= f.submit "登録する", class: "text-center text-white box-content py-[12px] px-[16px] rounded-[20px] bg-[#2EB7AC]" %>
+    <% end %>
+  </div>
 </div>

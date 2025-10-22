@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :daily_records, dependent: :destroy
-  has_many :habits
+  has_many :habits, dependent: :destroy
 
 	with_options on: :onboarding_step1 do
     validates :start_weight, presence: true, numericality: { greater_than: 0, less_than: 200 }

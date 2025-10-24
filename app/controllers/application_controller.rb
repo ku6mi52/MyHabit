@@ -14,12 +14,11 @@ class ApplicationController < ActionController::Base
     after_sign_in_path_for(resource)
   end
 
-  protected
-  def configure_permitted_parameters
-    # 新規登録で受け取る追加項目
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
 
-    # アカウント更新で受け取る追加項目
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:username])
   end
 end

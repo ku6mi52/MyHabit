@@ -19,7 +19,12 @@
 
 ## 使用技術
 |カテゴリー|使用技術|
+--
 |バックエンド|Ruby on rails 7, PostgreSQL|
+--
 |フロントエンド|Tailwind CSS, Chart.js|
+--
 |認証・認可|Devise|
+--
 |環境・デプロイ|Docker, Render|
+--

@@ -15,6 +15,6 @@ class HabitChecksController < ApplicationController
   private
 
   def habit_check_params
-    params.fetch(:habit_checks, {}).permit!.to_h
+  params.require(:habit_checks).to_unsafe_h.transform_values { |v| ActionController::Parameters.new(v).permit(:done)}
   end
 end

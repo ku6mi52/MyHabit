@@ -33,14 +33,14 @@ class HabitCheck < ApplicationRecord
   def self.tasks_completion_rate(daily_records)
     Array(daily_records).map { |r|
       done = r.habit_checks.checked.count
-      total_tasks = r.user.habits.count 
-      rate = 
+      total_tasks = r.user.habits.count
+      rate =
         if total_tasks == 0
           0
         else
           done * 100 / total_tasks
         end
-      [r.id, rate]
+      [ r.id, rate ]
     }.to_h
   end
 end

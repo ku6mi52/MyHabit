@@ -7,6 +7,6 @@ class CreateHabitChecks < ActiveRecord::Migration[7.2]
       t.timestamps
       t.boolean :done, null: false, default: false
     end
-    add_index :habit_checks, [:daily_record_id, :habit_id], unique: true
+    add_index :habit_checks, [ :daily_record_id, :habit_id ], unique: true
   end
 end

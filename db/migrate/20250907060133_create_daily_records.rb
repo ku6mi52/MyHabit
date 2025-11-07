@@ -9,6 +9,6 @@ class CreateDailyRecords < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :daily_records, [:user_id, :recorded_on], unique: true
+    add_index :daily_records, [ :user_id, :recorded_on ], unique: true
   end
 end

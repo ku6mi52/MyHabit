@@ -1,6 +1,6 @@
 class DailyRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_daily_record, only: [:edit, :update, :destroy]
+  before_action :set_daily_record, only: [ :edit, :update, :destroy ]
 
   def index
   first_on = current_user.daily_records.minimum(:recorded_on)&.to_date || Time.zone.today
@@ -12,7 +12,7 @@ class DailyRecordsController < ApplicationController
                     .page(params[:page]).per(1)
 
   current_month = @months.first || Time.zone.today.beginning_of_month
-  from, to = current_month.beginning_of_month, [current_month.end_of_month, Time.zone.today].min
+  from, to = current_month.beginning_of_month, [ current_month.end_of_month, Time.zone.today ].min
 
   @dates = (from..to).to_a
   scope  = current_user.daily_records.where(recorded_on: @dates)
@@ -62,4 +62,3 @@ class DailyRecordsController < ApplicationController
     params.require(:daily_record).permit(:recorded_on, :weight, :body_fat_percentage, :motivation)
   end
 end
-

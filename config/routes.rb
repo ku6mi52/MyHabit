@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root to: "dashboard#index"
   get "/dashboard", to: "dashboard#index"
   devise_for :users
@@ -12,12 +11,12 @@ Rails.application.routes.draw do
     patch :step2, action: :update_step2
   end
 
-  resources :daily_records, except: [:show]
+  resources :daily_records, except: [ :show ]
 
-  resources :habits, except: [:show]
+  resources :habits, except: [ :show ]
 
-  resource :profile, only: [:show], controller: "profiles" do
-    get  :edit_goals
+  resource :profile, only: [ :show ], controller: "profiles" do
+    get :edit_goals
     patch :update_goals
   end
 

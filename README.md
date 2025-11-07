@@ -18,13 +18,9 @@
 - 体重推移と日々の習慣達成率のグラフによる可視化
 
 ## 使用技術
-|カテゴリー|使用技術|
---
-|バックエンド|Ruby on rails 7, PostgreSQL|
---
-|フロントエンド|Tailwind CSS, Chart.js|
---
-|認証・認可|Devise|
---
-|環境・デプロイ|Docker, Render|
---
+| カテゴリー | 使用技術 |
+|-|-|
+| バックエンド | Ruby on rails 7, PostgreSQL |
+| フロントエンド | Tailwind CSS, Chart.js |
+| 認証・認可 |Devise|
+| 環境・デプロイ | Docker, Render |

@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  root to: "dashboard#index"
-  get "/dashboard", to: "dashboard#index"
   devise_for :users
-  resources :users
+
+  authenticated :user do
+    root to: "dashboard#index", as: :authenticated_root
+    get "/dashboard", to: "dashboard#index"
+    resources :users
+  end
+
+  unauthenticated do
+    root "home#top", as: :unauthenticated_root
+  end
 
   resource :onboarding, controller: :onboarding, only: [] do
     get   :step1

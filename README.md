@@ -24,8 +24,3 @@
 | フロントエンド | Tailwind CSS, Chart.js |
 | 認証・認可 |Devise|
 | 環境・デプロイ | Docker, Render |
-
-## 起動手順
-
-
-## テスト

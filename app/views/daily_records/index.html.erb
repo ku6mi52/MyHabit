@@ -1,7 +1,6 @@
 <div class="px-[24px]">
   <h1 class="font-[Montserrat] text-white font-bold text-[32px] mb-[16px] py-[24px]">記録一覧</h1>
   <div class="overflow-x-auto border border-white bg-white/30 rounded-[20px] text-[#656565] p-[24px] shadow-xl">
-    <%= paginate @months %>
 
     <table class="w-full">
       <thead class="border-b border-[#656565]">
@@ -59,7 +58,7 @@
           </tr>
         <% end %>
       </tbody>
-      <%= paginate @months %>
+      <button class="join-item btn"><%= paginate @months %></button>
     </table>
   </div>
 </div>

@@ -13,12 +13,12 @@ class ProfilesController < ApplicationController
     else
       flash.now[:alert] = "更新に失敗しました"
       @user = current_user
-      render :edit_goal, status: unprocessable_entity
+      render :edit_goals, status: :unprocessable_entity
     end
   end
 
   private
-  def goal_params
+  def goals_params
     params.require(:user).permit(:goal_weight, :goal_body_fat_percentage)
   end
 end

@@ -30,7 +30,50 @@
 ## クラス図
 
 ## ER図
-
+```mermaid
+erDiagram
+	users{
+		BIGINT id PK
+		STRING email
+		STRING password_digest
+		FLOAT start_weight
+		FLOAT start_body_fat_percentage
+		FLOAT goal_weight
+		FLOAT goal_body_fat_percentage
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	daily_records{
+		BIGINT id PK
+		REFERENCES user_id FK
+		DATE recorded_on
+		FLOAT weight
+		FLOAT body_fat_percentage
+		INTEGER motivation_level
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	habits{
+		BIGINT id PK
+		REFERENCES user_id FK
+		STRING habit_name
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	habit_checks{
+		BIGINT id PK
+		REFERENCES daily_record_id FK
+		REFERENCES habit_id FK
+		BOOLEAN status
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	
+	users ||--o{ daily_records :has
+	users ||--o{ habits :has
+	daily_records ||--o{ habit_checks :has
+	habits ||--o{ habit_checks :has
+```
 
 ## 画面遷移図
 <a>https://www.figma.com/design/pAKAMTt95chcodONtKNgnm/MyHabit?node-id=48-2632&t=ctPsqubs1iSJ24Aw-1</a>

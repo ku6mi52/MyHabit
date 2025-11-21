@@ -28,7 +28,7 @@
 ## 設計図
 
 ## クラス図
-```
+```mermaid
 classDiagram
 	User "1" *-- "0..*" DailyRecord :owns
 	User "1" *-- "0..*" Habit :owns

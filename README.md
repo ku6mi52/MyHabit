@@ -25,5 +25,12 @@
 | 認証・認可 |Devise|
 | 環境・デプロイ | Docker, Render |
 
+## 設計図
+
+## クラス図
+
+## ER図
+
+
 ## 画面遷移図
 <a>https://www.figma.com/design/pAKAMTt95chcodONtKNgnm/MyHabit?node-id=48-2632&t=ctPsqubs1iSJ24Aw-1</a>

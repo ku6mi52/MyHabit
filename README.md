@@ -25,8 +25,6 @@
 | 認証・認可 |Devise|
 | 環境・デプロイ | Docker, Render |
 
-## 設計図
-
 ## クラス図
 ```mermaid
 classDiagram

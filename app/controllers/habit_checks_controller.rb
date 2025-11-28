@@ -15,8 +15,11 @@ class HabitChecksController < ApplicationController
   private
 
   def habit_check_params
-    params.require(:habit_checks).permit!.to_h.transform_values do |v|
-      ActionController::Parameters.new(v).permit(:done)
+    habit_checks = params.require(:habit_checks)
+    result = {}
+    habit_checks.each do |habit_id, values|
+      result[habit_id] = { "done" => values[:done] }
     end
+    result
   end
 end

@@ -18,7 +18,7 @@ class OnboardingController < ApplicationController
 
   def step2
     return redirect_to(step1_onboarding_path) if current_user.start_weight.blank?
-    return redirect_to(authenticated_path) if current_user.onboarding_completed_at.present?
+    return redirect_to(dashboard_path) if current_user.onboarding_completed_at.present?
     @user = current_user
   end
 

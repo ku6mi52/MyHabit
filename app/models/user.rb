@@ -19,9 +19,9 @@ class User < ApplicationRecord
   end
 
   def onboarding_missing_step
-      return :step1 if start_weight.blank?
-      return :step2 if goal_weight.blank?
-      nil
+    return :step1 if start_weight.blank?
+    return :step2 if goal_weight.blank?
+    nil
   end
 
   def daily_record_on(date)

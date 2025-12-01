@@ -1,4 +1,4 @@
-# MyHabit
+# [MyHabit](https://myhabit.onrender.com)
 
 ## アプリ概要
 ダイエット習慣化を目的に、体重記録と習慣トラッカーの機能を併せ持つアプリです。
@@ -47,3 +47,104 @@ bin/rails db:seed
 - 5つの習慣（筋トレ、ランニング、野菜を食べる、読書、早起き）
 - 過去30日分の体重・体脂肪率記録
 - 過去30日分の習慣チェック記録
+
+
+## クラス図
+```mermaid
+classDiagram
+	User "1" *-- "0..*" DailyRecord :owns
+	User "1" *-- "0..*" Habit :owns
+	DailyRecord "1" *-- "0..*" HabitCheck :contains
+	Habit "1" o-- "0..*" HabitCheck :references
+	
+  class User{
+	  + email: string
+	  - password_digest: string
+	  + start_weight: float
+	  + start_body_fat_percentage: float
+	  + goal_weight: float
+	  + goal_body_fat_percentage: float
+  }
+  
+  class DailyRecord{
+	  + recorded_on: date
+	  + weight: float
+	  + body_fat_percentage: float
+	  + motivation_level: integer
+	  
+	  + weightDeltaFromStart() float
+	  + bodyFatPercentageDeltaFromStart() float
+	  + weightDeltaToGoal() float
+	  + bodyFatPercentageDeltaToGoal() float
+	  + self.on(user: User, date: date) DailyRecord | null
+	  + self.between(user: User, from: date, to: date): DailyRecord[]
+  }
+  
+  class Habit{
+	  + habit_name: string
+	  + difficulty: enum
+	  
+	  + switchMode(diffuculty: strong) Habit
+  }
+  
+  class HabitCheck{
+	  + status: boolean
+	  
+	  + markDone() HabitCheck
+	  + markUndone() HabitCheck
+	  + toggle() HabitCheck
+	  + date() date
+	  + self.on(user: User, date:date) HabitCheck[]
+	  + self.between(user: User, from: date, to: date) HabitCheck[]
+  }
+```
+
+## ER図
+```mermaid
+erDiagram
+	users{
+		BIGINT id PK
+		STRING email
+		STRING password_digest
+		FLOAT start_weight
+		FLOAT start_body_fat_percentage
+		FLOAT goal_weight
+		FLOAT goal_body_fat_percentage
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	daily_records{
+		BIGINT id PK
+		REFERENCES user_id FK
+		DATE recorded_on
+		FLOAT weight
+		FLOAT body_fat_percentage
+		INTEGER motivation_level
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	habits{
+		BIGINT id PK
+		REFERENCES user_id FK
+		STRING habit_name
+		ENUM difficulty
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	habit_checks{
+		BIGINT id PK
+		REFERENCES daily_record_id FK
+		REFERENCES habit_id FK
+		BOOLEAN status
+		DATETIME created_at
+		DATETIME updated_at
+	}
+	
+	users ||--o{ daily_records :has
+	users ||--o{ habits :has
+	daily_records ||--o{ habit_checks :has
+	habits ||--o{ habit_checks :has
+```
+
+## 画面遷移図
+<a>https://www.figma.com/design/pAKAMTt95chcodONtKNgnm/MyHabit?node-id=48-2632&t=ctPsqubs1iSJ24Aw-1</a>

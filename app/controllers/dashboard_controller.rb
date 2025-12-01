@@ -14,9 +14,11 @@ class DashboardController < ApplicationController
   private
 
   def initialize_habit_checks
-    @habits.map do |habit|
+    @habits.each do |habit|
       @daily_record.habit_checks.find_or_create_by!(habit: habit)
     end
+    # N+1問題を防ぐためにhabitをプリロード
+    @daily_record.habit_checks.includes(:habit).to_a
   end
 
   def build_monthly_chart_data

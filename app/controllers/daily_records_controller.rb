@@ -16,7 +16,8 @@ class DailyRecordsController < ApplicationController
     to = [ current_month.end_of_month, Time.zone.today ].min
 
     @dates = (from..to).to_a
-    @daily_record = current_user.daily_records.where(recorded_on: @dates)
+    @daily_record = current_user.daily_records
+                                .where(recorded_on: @dates)
     @daily_records = @daily_record.index_by(&:recorded_on)
     @rates = HabitCheck.tasks_completion_rate(@daily_record)
   end

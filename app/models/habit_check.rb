@@ -30,12 +30,29 @@ class HabitCheck < ApplicationRecord
   end
 
   def self.tasks_completion_rate(daily_records)
-    Array(daily_records).index_by(&:id).transform_values do |record|
-      calculate_completion_rate(record)
+    records_array = Array(daily_records)
+    return {} if records_array.empty?
+
+    # 最初のrecordからuser_idを取得（全て同じuserのはず）
+    user_id = records_array.first.user_id
+    total_tasks = Habit.where(user_id: user_id).count
+    return {} if total_tasks.zero?
+
+    # 一括でhabit_checksをロード
+    record_ids = records_array.map(&:id)
+    done_counts = HabitCheck.where(daily_record_id: record_ids, done: true)
+                            .group(:daily_record_id)
+                            .count
+
+    # 各recordの達成率を計算
+    records_array.index_by(&:id).transform_values do |record|
+      done_count = done_counts[record.id] || 0
+      (done_count * 100) / total_tasks
     end
   end
 
   def self.calculate_completion_rate(daily_record)
+    # 後方互換性のため残す
     total_tasks = daily_record.user.habits.count
     return 0 if total_tasks.zero?
 

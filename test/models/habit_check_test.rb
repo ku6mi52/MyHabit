@@ -70,7 +70,7 @@ class HabitCheckTest < ActiveSupport::TestCase
     habit_check = daily_record.habit_checks.find_or_create_by!(habit: habit)
     habit_check.update!(done: true)
 
-    rates = HabitCheck.tasks_completion_rate([daily_record])
+    rates = HabitCheck.tasks_completion_rate([ daily_record ])
     assert_equal 100, rates[daily_record.id]
   end
 

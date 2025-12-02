@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
     guest_user = User.find_by(email: "guest@example.com")
 
     unless guest_user
-      redirect_to root_path, alert: "ゲストユーザーが見つかりません。seedデータを実行してください。"
+      redirect_to new_user_session_path, alert: "ゲストユーザーが見つかりません。seedデータを実行してください。"
       return
     end
 

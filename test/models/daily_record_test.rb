@@ -71,7 +71,9 @@ class DailyRecordTest < ActiveSupport::TestCase
   test "motivation enum works" do
     record = daily_records(:one)
     record.motivation = "🙂"
+    record.save!
+    record.reload
     assert_equal "🙂", record.motivation
-    assert_equal 2, record[:motivation]
+    assert_equal 2, record.read_attribute_before_type_cast(:motivation)
   end
 end

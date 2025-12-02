@@ -15,8 +15,12 @@
       <%= f.label :password, "パスワード" %><br>
       <%= f.password_field :password, autocomplete: "current-password",class: "text-[#656565] rounded-[20px] input input-accent w-full" %>
 
-      <%= f.submit "ログイン", class: "text-white bg-[#2EB7AC] px-[16px] py-[12px] text-center rounded-[20px] mt-[32px] hover:bg-teal-700" %>
+      <%= f.submit "ログイン", class: "text-white bg-[#2EB7AC] px-[16px] py-[12px] text-center rounded-[20px] mt-[32px] hover:bg-teal-700 w-full" %>
     <% end %>
+
+    <div class="text-center my-[16px] text-white">または</div>
+
+    <%= button_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: "text-white bg-[#656565] px-[16px] py-[12px] text-center rounded-[20px] hover:bg-gray-600 w-full" %>
 
     <%= render "devise/shared/links" %>
   </div>

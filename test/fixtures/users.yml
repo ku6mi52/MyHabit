@@ -5,9 +5,11 @@ one:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
   start_weight: 70.0
   goal_weight: 65.0
+  username: user_one
 
 two:
   email: user2@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
   start_weight: 80.0
   goal_weight: 75.0
+  username: user_two

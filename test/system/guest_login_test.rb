@@ -26,15 +26,21 @@ class GuestLoginTest < ApplicationSystemTestCase
     assert_text "ゲストユーザーとしてログインしました"
   end
 
-  test "guest login fails when guest user does not exist" do
-    # ゲストユーザーが存在しない場合のテスト
+  test "guest user is automatically created if not exists" do
+    # ゲストユーザーが存在しない場合は自動生成されることを確認
     User.find_by(email: "guest@example.com")&.destroy
 
     visit new_user_session_path
 
     click_button "ゲストとしてログイン"
 
-    # エラーメッセージが表示されることを確認
-    assert_text "ゲストユーザーが見つかりません"
+    # ダッシュボードにリダイレクトされることを確認
+    assert_current_path authenticated_root_path
+
+    # ログイン成功メッセージが表示されることを確認
+    assert_text "ゲストユーザーとしてログインしました"
+
+    # ゲストユーザーが作成されていることを確認
+    assert User.exists?(email: "guest@example.com")
   end
 end

@@ -3,23 +3,13 @@ class DailyRecordsController < ApplicationController
   before_action :set_daily_record, only: [ :edit, :update, :destroy ]
 
   def index
-    first_on = current_user.daily_records.minimum(:recorded_on)&.to_date || Time.zone.today
-    months_count = (Time.zone.today.year * 12 + Time.zone.today.month) -
-                   (first_on.year * 12 + first_on.month) + 1
+    service = DailyRecordsIndexService.new(user: current_user, page: params[:page])
+    result = service.call
 
-    months = Array.new(months_count) { |i| Time.zone.today.beginning_of_month << i }
-    @months = Kaminari.paginate_array(months, total_count: months_count)
-                      .page(params[:page]).per(1)
-
-    current_month = @months.first || Time.zone.today.beginning_of_month
-    from = current_month.beginning_of_month
-    to = [ current_month.end_of_month, Time.zone.today ].min
-
-    @dates = (from..to).to_a
-    @daily_record = current_user.daily_records
-                                .where(recorded_on: @dates)
-    @daily_records = @daily_record.index_by(&:recorded_on)
-    @rates = HabitCheck.tasks_completion_rate(@daily_record)
+    @months = result[:months]
+    @dates = result[:dates]
+    @daily_records = result[:daily_records]
+    @rates = result[:rates]
   end
 
   def new

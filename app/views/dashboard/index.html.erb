@@ -49,9 +49,9 @@
     <ul>
       <% @habit_checks.each do |habit_check| %>
         <li class="text-[#2E2E2E] border-b-1 mx-[20px] mb-[18px]">
-          <%= fields_for "habit_checks[#{habit_check.habit_id}]" do |f| %>
-            <%= f.check_box :done, class: "checkbox border-[#656565] bg-[#656565] checked:border-[#2EB7AC] checked:bg-[#2EB7AC] checked:text-[#2EB7AC]" %>
-            <%= f.label :done, habit_check.habit.name %>
+          <%= fields_for "habit_checks[#{habit_check.habit_id}]", habit_check do |f| %>
+            <%= f.check_box :done, { class: "checkbox bg-white border-2 border-[#656565] checked:border-[#2EB7AC] checked:bg-[#2EB7AC] peer" }, "1", "0" %>
+            <%= f.label :done, habit_check.habit.name, class: "peer-checked:line-through peer-checked:text-[#A2A2A2] #{habit_check.done ? 'line-through text-[#A2A2A2]' : ''}" %>
           <% end %>
         </li>
       <% end %>

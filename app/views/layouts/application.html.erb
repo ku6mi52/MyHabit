@@ -22,7 +22,9 @@
     <main class="w-full lg:max-w-4xl mx-auto px-4 py-[100px]">
       <%= yield %>
     </main>
-  
-    <%= render "shared/footer" %>
+
+    <% unless (controller_name == 'home' && action_name == 'top') || controller_name == 'onboarding' %>
+      <%= render "shared/footer" %>
+    <% end %>
   </body>
 </html>

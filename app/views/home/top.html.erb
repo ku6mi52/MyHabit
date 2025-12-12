@@ -1,12 +1,17 @@
 <h1 class="text-white font-bold text-[32px] text-center mb-[24px]">ダイエットを習慣化しよう</h1>
-<p class="text-[#656565]">✔️日々の体重・体脂肪率・ダイエットのモチベーションを記録</p>
-<p class="text-[#656565]">✔️自分で設定したオリジナルの習慣を習慣トラッカーで追跡</p>
-<p class="text-[#656565]">✔️体重推移と日々の習慣達成度をグラフで確認</p>
+<div class="bg-white/30 border-white rounded-box p-[24px]">
+  <p class="text-[#656565]">✔️日々の体重・体脂肪率・ダイエットのモチベーションを記録</p>
+  <p class="text-[#656565]">✔️自分で設定したオリジナルの習慣を習慣トラッカーで追跡</p>
+  <p class="text-[#656565]">✔️体重推移と日々の習慣達成度をグラフで確認</p>
+</div>
 
-<div class="mt-[24px] text-[#2EB7AC] link text-[24px]"><%= link_to "ログインはこちら", new_user_session_path %></div>
-<div class="my-[24px] text-[#2EB7AC] link text-[24px]"><%= link_to "新規登録はこちら", new_user_registration_path %></div>
+<div class="flex gap-4 mt-[24px] mb-[24px] justify-center">
+  <%= link_to "ログインはこちら", new_user_session_path, class: "btn btn-outline btn-error text-white" %>
+  <%= link_to "新規登録はこちら", new_user_registration_path, class: "btn btn-error text-white" %>
+  <%= button_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline btn-error text-white" %>
+</div>
 
-<h2 class="text-white font-bold text-[24px] mb-[16px]">登録後のアプリの使い方</h2>
+<h2 class="text-white font-bold text-[24px] mb-[16px] mt-[66px]">登録後のアプリの使い方</h2>
 
 <div class="collapse collapse-arrow bg-base-100 border border-base-300">
   <input type="radio" name="my-accordion-2" checked="checked" />
